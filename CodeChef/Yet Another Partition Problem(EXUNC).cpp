@@ -17,6 +17,7 @@ int main()
    	cin>>n>>q;
    	vll array(n);
    	vll sub_arrays(n);
+   	set <ll> position_of_subarrays;
    	ll current=1;
    	rep(i,0,n){
    		cin>>array[i];
@@ -26,25 +27,45 @@ int main()
    			}	
    			else{
    				sub_arrays[i]=++current;
+   				position_of_subarrays.insert(i);
    			}
    		}
    		else{
    			sub_arrays[i]=current;
+   			position_of_subarrays.insert(i);
    		}
    	}
-   	rep(i,0,n){
+   	/*rep(i,0,n){
    		cout<<sub_arrays[i]<<" ";
+   	}*/
+   	cout<<endl;
+   	for (auto i:position_of_subarrays){
+   		cout<<i<<" ";
    	}
+   	cout<<endl;
    	ll x=0,y=0,z=0;
    	rep(i,0,q){
    		cin>>x;
    		if(x==1){
    			cin>>y;
    			cin>>z;
+   			array[y-1]=z;
+   			position_of_subarrays.insert(y-1);
+   			if (y>1 && z%array[y-2]==0){
+   				position_of_subarrays.erase(y-1);
+   			}
+   			if (y<array.size() && array[y]%z==0){
+   				position_of_subarrays.erase(y);
+   			}
    		}
    		else{
    			cin>>y;
+   			auto it=position_of_subarrays.lower_bound(y-1);
+   			cout<<*it<<endl;
    		}
+   	}
+   	for (auto i:position_of_subarrays){
+   		cout<<i<<" ";
    	}
 	return 0;
 }
