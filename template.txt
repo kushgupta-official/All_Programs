@@ -6,12 +6,19 @@ using namespace std;
 # define vi std::vector<int>
 # define vll std::vector<ll>
 
+void fastIO(){
+	ios::sync_with_stdio(0);
+   	cin.tie(0);
+    cout.tie(0);
+}
+
 int main()
 {
+	fastIO();
 	#ifndef ONLINE_JUDGE
     freopen("input.txt", "r", stdin) ;
    	freopen("output.txt", "w", stdout) ;
    	#endif
-
+	
 	return 0;
 }
