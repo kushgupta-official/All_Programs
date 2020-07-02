@@ -16,9 +16,25 @@ void kush_gupta(){
    	#endif
 }
 
+ll gcd(ll length,ll breadth){
+	ll temp;
+	while(breadth!=0){
+		temp=length%breadth;
+		length=breadth;
+		breadth=temp;
+	}
+	return length;
+}
+
 int main()
 {
 	kush_gupta();
-	
+	ll test_cases=0;
+	cin>>test_cases;
+	while(test_cases--){
+		ll length=0,breadth=0;
+		cin>>length>>breadth;
+		cout<<gcd(length,breadth)<<endl;
+	}
 	return 0;
 }

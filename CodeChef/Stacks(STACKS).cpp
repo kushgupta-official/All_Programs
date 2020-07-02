@@ -6,7 +6,7 @@ using namespace std;
 # define vi std::vector<int>
 # define vll std::vector<ll>
 # define pb push_back
-
+hi
 int main()
 {
 	#ifndef ONLINE_JUDGE
