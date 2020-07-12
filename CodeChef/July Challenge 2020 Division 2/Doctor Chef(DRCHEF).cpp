@@ -17,15 +17,65 @@ void kush_gupta(){
   #endif
 }
 
-int main()
-{
-	kush_gupta();
-	w(test_cases){
+int main(){
+ kush_gupta();
+ w(test_cases)
+ {
     ll n=0,x=0;
     cin>>n>>x;
-    multiset <ll> inputs;
-    ll temp=0;
-    
-  }
-	return 0;
+    vector<ll> inputs(n);
+    for(ll i=0;i<n;i++){
+        cin>>inputs[i];
+    }
+    ll days=0;
+    sort(inputs.begin(),inputs.end());
+    auto it = lower_bound(inputs.begin(), inputs.end(), x);
+    ll lb = it - inputs.begin();
+    for(ll i=lb;i<n;i++)
+    {
+    	if(x<inputs[i])
+    	{
+    		while(x<inputs[i])
+    		{
+    			x=2*x;
+    			days++;
+                //cout<<"days="<<days<<" x="<<x<<endl;
+    		}
+    		days++;
+            //cout<<"days="<<days<<" x="<<x<<endl;
+    	}
+    	else{
+            days++;
+            //cout<<"days="<<days<<" x="<<x<<endl;
+        }
+    	x=2*inputs[i];
+    }
+    ll tot=lb+days;
+    if(lb!=0)
+    {
+    	days=0;
+    	lb--;
+    	for(ll i=lb;i<n;i++)
+    	{
+    		if(x<inputs[i])
+    		{
+    			while(x<inputs[i])
+    			{
+    				x=2*x;
+    				days++;
+    			}
+    			days++;
+    		}
+    		else
+    		days++;
+    		x=2*inputs[i];
+    	}
+    	ll ans=min(days+lb,tot);
+    	cout<<ans<<endl;
+    }
+    else{
+        cout<<tot<<endl;
+    }
+ }
+ return 0;
 }
