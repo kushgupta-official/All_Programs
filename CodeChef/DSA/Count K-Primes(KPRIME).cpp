@@ -20,29 +20,6 @@ void kush_gupta(){
 int main()
 {
   kush_gupta();
-  ll n=100000;
-  std::vector<bool> soe(n+1,1);
-  std::vector<ll> prime_factors(n+1,0);
-  for (ll i=2;i<=n;i++){
-    if (soe[i]){
-      prime_factors[i]++;
-      //max_prime_factor[i]=i;
-      for (ll j=i+i;j<=n;j+=i){
-        soe[j]=0;
-        prime_factors[j]++;
-      }
-    }
-  }
-	w(test_cases){
-    ll a=0,b=0,k=0;
-    cin>>a>>b>>k;
-    ll res=0;
-    for (ll i=a;i<=b;i++){
-      if (prime_factors[i]==k){
-        res++;
-      }
-    }
-    cout<<res<<endl;
-  }
+  
 	return 0;
 }

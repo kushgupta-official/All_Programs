@@ -1,161 +1,127 @@
-#pragma GCC optimize("Ofast,unroll-loops")
-#include <algorithm>
-#include <bitset>
-#include <cassert>
-#include <chrono>
-#include <cmath>
-#include <complex>
-#include <cstdio>
-#include <cstdlib>
-#include <cstring>
-#include <ctime>
-#include <deque>
-#include <functional>
-#include <iomanip>
-#include <iostream>
-#include <iterator>
-#include <limits>
-#include <list>
-#include <map>
-#include <numeric>
-#include <queue>
-#include <random>
-#include <ratio>
-#include <set>
-#include <sstream>
-#include <stack>
-#include <string>
-#include <unordered_map>
-#include <unordered_set>
-#include <utility>
-#include <vector>
-using namespace std;
-
-
-#include <ext/pb_ds/assoc_container.hpp>
-#include <ext/pb_ds/tree_policy.hpp>
-#include <ext/rope>
-using namespace __gnu_pbds;
-using namespace __gnu_cxx;
-typedef tree<int, null_type, less<int>, rb_tree_tag, tree_order_statistics_node_update> indexed_set;
-/*order_of_key(val): returns the no. of values less than val
-find_by_order(k): returns the iterator to kth largest element.(0 - based)*/
-typedef long double LD;
-typedef long long ll;
-#define int ll
-#define pb push_back
+/*Ph@n^0m Dec0d3r*/
+/*----------------*/
+/* 	^_HAR HAR MAHADEV_^
+   	|Om namah shivaya|
+*/
+#include<bits/stdc++.h>
+#include<boost/multiprecision/cpp_int.hpp>
+#define f(i,a,b) for(int i=a;i<b;i++)
+#define ll long long int
+#define fast std::ios_base::sync_with_stdio(false),cin.tie(0),cout.tie(0)
+#define pb(temp) push_back(temp)
 #define mp make_pair
-#define REP(i,n) for (int i = 0; i < n; i++)
-#define FOR(i,a,b) for (int i = a; i < b; i++)
-#define REPD(i,n) for (int i = n-1; i >= 0; i--)
-#define FORD(i,a,b) for (int i = a; i >= b; i--)
-#define all(v) v.begin(),v.end()
-#define sortall(x) sort(all(x))
-#define tr(it,a) for(auto it=a.begin();it!=a.end();it++)
-#define PI 3.1415926535897932384626
-typedef map<int, int> mii;
-typedef vector<int> vi;
-typedef vector<vi> vvi;
-typedef pair<int, int> pii;
-typedef vector<pii> vpii;
-#define F first
-#define S second
-#define PQ(type) priority_queue<type>
-#define PQD(type) priority_queue<type,vector<type>,greater<type> >
-#define WL(t) while(t --)
-#define runtime() ((double)clock() / CLOCKS_PER_SEC)
-#define sqr(x) ((x)*(x))
-#define inrange(i,a,b) ((i>=min(a,b)) && (i<=max(a,b)))
+#define mod (ll)1000000007
+using namespace boost::multiprecision;
+using namespace std ;
+typedef unsigned long long int ulli;
 
-
-#define si(x) scanf("%lld",&x)
-#define ss(x) scanf("%s",s)
-
-#define pi(x) printf("%lld\n",x)
-#define ps(x) printf("%s",x)
-
-#define deb(x) cout<<#x <<"="<< x<<endl
-#define deb2(x,y) cout<<#x<<"="<<x<<"."<<#y<<"="<<y<<endl
-#define FLUSH fflush(stdout)
-#define FAST_IO ios::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
-#define endl "\n"
-
-const int MAXN = 1000005;
-const int SQRTN = 1003;
-const int LOGN = 22;
-const double Pi = acos(-1);
-
-#ifdef int
-const int INF = 1e16;
-#else
-const int INF = 1e9;
-#endif
-
-const int MOD = 1000000007;
-const int FMOD = 998244353;
-const double eps = 1e-9;
-
-
-template<typename T> T gcd(T a, T b) {return (b ? __gcd(a, b) : a);}
-template<typename T> T lcm(T a, T b) {return (a * (b / gcd(a, b)));}
-int add(int a, int b, int c = MOD) {int res = a + b; return (res >= c ? res - c : res);}
-int mod_neg(int a, int b, int c = MOD) {int res; if (abs(a - b) < c)res = a - b; else res = (a - b) % c; return (res < 0 ? res + c : res);}
-int mul(int a, int b, int c = MOD) {ll res = (ll)a * b; return (res >= c ? res % c : res);}
-int muln(int a, int b, int c = MOD) {ll res = (ll)a * b; return ((res % c) + c) % c;}
-ll mulmod(ll a, ll b, ll m = MOD) {ll q = (ll)(((LD)a * (LD)b) / (LD)m); ll r = a * b - q * m; if (r > m)r %= m; if (r < 0)r += m; return r;}
-template<typename T>T expo(T e, T n) {T x = 1, p = e; while (n) {if (n & 1)x = x * p; p = p * p; n >>= 1;} return x;}
-template<typename T>T power(T e, T n, T m = MOD) {T x = 1, p = e; while (n) {if (n & 1)x = mul(x, p, m); p = mul(p, p, m); n >>= 1;} return x;}
-template<typename T>T extended_euclid(T a, T b, T &x, T &y) {
-	T xx = 0, yy = 1; y = 0; x = 1; while (b) {
-		T q = a / b, t = b; b = a % b; a = t; \
-		t = xx; xx = x - q * xx; x = t; t = yy; yy = y - q * yy; y = t;
-	} return a;
+ulli gcd(ulli x,ulli y) {
+	if(x==0) return y;
+	return gcd(y%x,x);
 }
-template<typename T>T mod_inverse(T a, T n = MOD) {T x, y, z = 0; T d = extended_euclid(a, n, x, y); return (d > 1 ? -1 : mod_neg(x, z, n));}
-vector<int> prime;
-vector<int> factors(100000 + 1);
-void simpleSieve()
+ulli factorial(ulli n) {
+	if (n == 0)
+		return 1;
+	return n * factorial(n - 1);
+}
+ll findS(ll s) {
+	return (sqrtl(8*s + 1) - 1)/2;
+}
+ll prime(ll a) {
+	if(a==1)return 0;
+	if(a==2 || a==3)return true;
+	if(a%2==0 ||a%3==0)return 0;
+	for(ll i=5; i<=sqrt(a); i+=6)
+		if(a%i==0 || a%(i+2)==0)
+			return 0;
+
+	return 1;
+}
+ll ncr(ll n, ll r) {
+	ll ans=1;
+	f(i,0,r) {
+		ans*=(n-i)%mod;
+		ans/=(i+1);
+	}
+	return ans;
+}
+ll fact[1000001] ;
+void prepare_f() {
+	for(int i=0; i<1000001; i++) {
+		fact[i] = 1 ;
+	}
+	for(int i=1; i<1000001; i++) {
+		fact[i] = (fact[i-1]*i)%mod ;
+	}
+}
+ll fac[1000001];
+ll power(ll x, ll y, ll p)
 {
-	bool mark[100000 + 1];
-	memset(mark, false, sizeof(mark));
+    ll res = 1;
 
-	for (int i = 2; i <= 100000; ++i) {
-		if (mark[i] == false) {
-			// If not marked yet, then its a prime
-			prime.push_back(i);
-			for (int j = i; j <= 100000; j += i)
-				mark[j] = true;
-		}
-	}
+    x = x % p;
+
+    while (y > 0)
+    {
+        if (y & 1)
+            res = (res*x) % p;
+
+        y = y>>1;
+        x = (x*x) % p;
+    }
+    return res;
 }
-void factor() {
-	for (auto i : prime) {
-		for (int j = i; j <= 100001; j += i) {
-			factors[j]++;
-		}
-	}
-	/*for (int i=2;i<factors.size();i++){
-		cout<<factors[i]<<endl;
-	}*/
+ll modInverse(ll n, ll p)
+{
+    return power(n, p-2, p);
 }
-signed main() {
-	FAST_IO;
-#ifndef ONLINE_JUDGE
-	freopen("input.txt", "r", stdin);
-	freopen("output.txt", "w", stdout);
-#endif
-	simpleSieve();
-	factor();
-	int t;
-	cin >> t;
-	while (t--) {
-		int a, b, k;
-		int c = 0;
-		cin >> a >> b >> k;
-		for (int i = a; i <= b; i++) {
-			if (factors[i] == k) c++;
+ll nCrModPFermat(ll n, ll r, ll p)
+{
+   if (r==0)
+      return 1;
+    return (fac[n]* modInverse(fac[r], p) % p *modInverse(fac[n-r], p) % p) % p;
+}
+int main() {
+	//prepare_f() ;
+	ll p = mod ;
+    fac[0] = 1;
+    for (int i=1 ; i<=1000000; i++)
+        fac[i] = fac[i-1]*i%p;
+
+	int t ;
+	cin >> t ;
+	while(t--) {
+		int n ;
+		cin >> n ;
+		string a,b;
+		cin>>a>>b;
+		ll l=a.size();
+		ll one_max=0,one_min=0;
+
+		f(i,0,a.size()) {
+			if(a[i]=='1')
+				one_max++;
+			if(b[i]=='1')
+				one_min++;
 		}
-		cout << c << endl;
+		if(one_max<one_min) {
+			ll temp=one_min;
+			one_min=one_max;
+			one_max=temp;
+		}
+		if(one_max+one_min>l) {
+			ll dif=(one_max+one_min)-l;
+			one_max-=dif;
+			one_min-=dif;
+		}
+		cpp_int ans=0;
+		do {
+			ll tmp = fact[l]/fact[one_max+one_min] ;
+			ans += nCrModPFermat(l,one_max+one_min,p) ;
+			one_max--;
+			one_min--;
+		} while (one_min>=0);
+		cout<<ans%mod<<endl;
 	}
 	return 0;
 }
