@@ -6,6 +6,7 @@ using namespace std;
 # define vi std::vector<int>
 # define vll std::vector<ll>
 # define w(x) ll x=0; cin>>x; while(x--)
+# define endl '\n'
 
 void kush_gupta(){
   ios::sync_with_stdio(0);
@@ -23,53 +24,36 @@ int main()
 	w(test_cases){
     ll n=0;
     cin>>n;
-    vll a(n);
-    vll b(n);
+    vll a(n),b(n);
     rep(i,0,n){
-      cin>>a[i]>>b[i];
+      cin>>a[i];
     }
-    sort(a.begin(), a.end());
-    sort(b.begin(), b.end());
-    ll res=0;
     rep(i,0,n){
-      if (a[i]!=b[i]){
-        if (a[i]<b[i]){
-          auto ite=upper_bound(b.begin()+i+1, b.end(),b[i]);
-          cout<<*(--ite)<<endl;
-          if (*ite==a[i]){
-            swap(*ite,a[i]);
-            cout<<"hi";
-            res+=a[i];
-          }
-          else{
-            res=-1;
-            break;
-          }
-        }
-        else{
-         auto ite=upper_bound(a.begin()+i+1, a.end(),a[i]);
-         cout<<*(--ite)<<endl;
-          if (*ite==b[i]){
-            swap(*ite,b[i]);
-            cout<<"hi";
-            res+=b[i];
-          }
-          else{
-            res=-1;
-            break;
-          } 
-        }
+      cin>>b[i];
+    }
+    map <ll,ll> mp,mpa,mpb;
+    rep(i,0,n){
+      mp[a[i]]++;
+      mp[b[i]]++;
+      mpa[a[i]]++;
+      mpb[b[i]]++;
+    }
+    int flag=0;
+    for (auto ite : mp){
+      if (ite.second%2!=0){
+        flag=1;
+        break;
       }
     }
-    rep(i,0,n){
-      cout<<a[i]<<" ";
+    if (flag==1){
+      cout<<-1<<endl;
+      continue;
     }
-    cout<<endl;
-    rep(i,0,n){
-      cout<<b[i]<<" ";
+    else{
+      vll ans;
+      ll res=0;
+      for (auto ite : a)
     }
-    cout<<endl;
-    cout<<res<<endl;
   }
 	return 0;
 }
