@@ -1,0 +1,24 @@
+DP : 1. Choice
+	 2. Optimization
+
+KnapSack Problem Types : 1. Fractional (Greedy Algo.)
+						 2. 0/1 (DP)	--Either take it or not	(Single item)
+						 3. Unbounded (DP)  -- Unlimited Items
+
+Approach for dp: 1. Recursion
+				 2. Memorization or Top-down (Table) [Different implementation but same time complexity]
+
+Recursion : 
+			Consist of 2 main things : 1. Base Call
+									   2. Choice Diagram
+			1. For base condition always think of the smallest valid input possible :-)
+			2. Choice Diagram : 
+								function (input)
+								.
+								.
+								.
+								function (smaller input)
+								.
+								.
+								.
+								base function
