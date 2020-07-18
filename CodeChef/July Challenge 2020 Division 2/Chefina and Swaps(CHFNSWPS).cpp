@@ -1,3 +1,4 @@
+//https://discuss.codechef.com/t/chfnswps-editorial/71067
 # include <bits/stdc++.h>
 
 using namespace std;
@@ -52,7 +53,17 @@ int main()
     else{
       vll ans;
       ll res=0;
-      for (auto ite : a)
+      for (auto ite : mpa){
+        if (ite.second > mpb[ite.first]){
+          ans.push_back(ite.first);
+        }
+        else if (ite.second < mpb[ite.first]){
+          ans.push_back(ite.first);
+        }
+      }
+      sort(ans.begin(), ans.end());
+      ll min=*ans.begin();
+      ll max=*(--ans.end());
     }
   }
 	return 0;
