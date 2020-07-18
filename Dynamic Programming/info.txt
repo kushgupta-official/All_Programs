@@ -22,3 +22,7 @@ Recursion :
 								.
 								.
 								base function
+
+Memorization : minor update on recursion function such that creating matrix which stores values at every recursion and, when a function is called, before doing anything it first checks this dp matrix saving time.
+
+Table : initizlize its first row and column with a value seeing base condition of recursive function.
