@@ -1,3 +1,5 @@
+//Count number of subsets whose difference comes out to be given value.
+//similar question : https://leetcode.com/problems/target-sum/
 # include <bits/stdc++.h>
 
 using namespace std;
@@ -36,12 +38,6 @@ ll count_subset(ll n,const vll &arr,ll sum){
       }
     }
   }
-  // rep(i,0,n+1){
-  //   rep(j,0,sum+1){
-  //     cout<<t[i][j]<<" ";
-  //   }
-  //   cout<<endl;
-  // }
   return t[n][sum];
 }
 
