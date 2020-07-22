@@ -1,3 +1,4 @@
+//link : https://practice.geeksforgeeks.org/problems/shortest-common-supersequence/0
 # include <bits/stdc++.h>
 
 using namespace std;
@@ -36,12 +37,12 @@ ll lcs(ll n,ll m,string st1,string st2){
       }
     }
   }
-  rep(i,0,n+1){
+  /*rep(i,0,n+1){
     rep(j,0,m+1){
       cout<<t[i][j]<<" ";
     }
     cout<<endl;
-  }
+  }*/
   return t[n][m];
 }
 
