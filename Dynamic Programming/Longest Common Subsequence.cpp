@@ -1,3 +1,5 @@
+// link: https://practice.geeksforgeeks.org/problems/longest-common-subsequence/0
+// for printing lcs : https://www.youtube.com/watch?v=823Grn4_dCQ&list=PL_z_8CaSLPWekqhdCPmFohncHwz8TY2Go&index=24
 # include <bits/stdc++.h>
 
 using namespace std;
