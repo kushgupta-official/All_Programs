@@ -1,4 +1,4 @@
-//https://practice.geeksforgeeks.org/problems/knapsack-with-duplicate-items/0
+//https://practice.geeksforgeeks.org/problems/rod-cutting/0/
 # include <bits/stdc++.h>
 
 using namespace std;
@@ -18,19 +18,6 @@ void kush_gupta(){
   freopen("output.txt", "w", stdout) ;
   #endif
 }
-
-/*ll naive_unbounded_knapsack(ll n,ll w,const vll &values,const vll &weights){
-  if (n==0 || w==0){
-    return 0;
-  }
-  if (weights[n-1]<=w){
-    return max(values[n-1] + naive_unbounded_knapsack(n,w-weights[n-1],values,weights)
-                ,naive_unbounded_knapsack(n-1,w,values,weights));
-  }
-  else{
-    return naive_unbounded_knapsack(n-1,w,values,weights);
-  }
-}*/
 
 ll dp_unbounded_knapsack(ll n,ll w,const vll &values,const vll &weights){
   ll t[n+1][w+1];
@@ -57,18 +44,15 @@ int main()
 {
 	kush_gupta();
 	w(test_cases){
-    ll n=0;
-    ll w=0;
-    cin>>n>>w;
-    vll values(n),weights(n);
-    rep(i,0,n){
-      cin>>values[i];
-    }
-    rep(i,0,n){
-      cin>>weights[i];
-    }
-    ll res=dp_unbounded_knapsack(n,w,values,weights);
-    cout<<res<<endl;
-  }
+		ll n=0;
+		cin>>n;
+		vll length(n),price(n);
+		rep(i,0,n){
+			length[i]=i+1;
+			cin>>price[i];
+		}
+		ll res=dp_unbounded_knapsack(n,n,price,length);
+		cout<<res<<endl;
+	}
 	return 0;
 }
