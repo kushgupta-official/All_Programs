@@ -40,7 +40,10 @@ ll count_subset(ll n,const vll &arr,ll sum){
   }
   return t[n][sum];
 }
-
+//3+3+1
+//4+2+1
+//4+3
+//4+3
 ll main_function(ll n,const vll &arr,ll sum,ll diff){
   ll sum2=(diff+sum)/2;
   return count_subset(n,arr,sum2);
