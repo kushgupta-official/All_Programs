@@ -1,3 +1,5 @@
-2
-aebcbda
-geeksforgeeks
+1
+5
+4
+HELLO
+GEEK
