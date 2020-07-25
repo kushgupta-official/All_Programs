@@ -1,0 +1,31 @@
+Matrix Chain Multiplication Basic Format:-
+
+int solve(int arr[], int i, int j){
+
+/* For a recursive function first will a come base condition, in mcm the 
+	base condition will be for an invalid input.
+*/
+	if (i>j){		//here not necessary i>j it is dependent on question
+		return 0;
+	}
+
+	for (k=i;k<j;k++){		// here k iteration will depend on question 						// such that it satisfies what the question 						// says
+		/*Now calculate temporary answer for each like this :
+		*/
+
+		temp_ans=solve(arr,i,k)+solve(arr,k+1,j)+(anything else maybe 												possible)
+
+		/*Now, main answer will be calculated by calling a function on temp_ans's like min, max or anything else depending on questions
+		*/
+
+		ans<-function(temp_ans)
+	}
+	return ans;
+}
+
+
+Steps for solving MCM : 
+		1. Find what the i and j would be understanding the question
+		2. Determine Base Condition
+		3. Find k loop scheme
+		4. calculate main answer from temporary answer.

@@ -11,7 +11,9 @@ Approach for dp: 1. Recursion
 Recursion : 
 			Consist of 2 main things : 1. Base Call
 									   2. Choice Diagram
-			1. For base condition always think of the smallest valid input possible :-)
+			1. For base condition always think of the smallest valid input possible :-) (Mostly used)
+							OR
+				Think of an Invalid Input (like used in MCM)
 			2. Choice Diagram : 
 								function (input)
 								.
