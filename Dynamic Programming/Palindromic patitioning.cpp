@@ -1,4 +1,3 @@
-//https://practice.geeksforgeeks.org/problems/matrix-chain-multiplication/0
 # include <bits/stdc++.h>
 
 using namespace std;
@@ -19,18 +18,35 @@ void kush_gupta(){
   #endif
 }
 
+bool ispalindrome(string s,ll i,ll j){
+  if(i>=j){
+    return true;
+  }
+  while(i<j){
+    if(s[i]!=s[j]){
+      return false;
+    }
+    i++;
+    j--;
+  }
+  return true;
+}
 ll t[1001][1001];
-
-ll mcm(const vll &arr,ll i,ll j){
-  if (i>=j){
+ll solve(string s,ll i,ll j){
+  if(i>=j){
     return 0;
   }
+  if(ispalindrome(s,i,j)==true){
+    return t[i][j]=0;
+  }
   if(t[i][j]!=-1){
+   // cout<<"yes";
     return t[i][j];
   }
   ll mn=INT_MAX;
-  for (ll k=i;k<=j-1;k++){
-    ll temp_ans=mcm(arr,i,k) + mcm(arr,k+1,j) + arr[i-1]*arr[k]*arr[j];
+  for (ll k=i;k<j;k++){
+    ll temp_ans=solve(s,i,k) + solve(s,k+1,j) + 1;
+
     if(temp_ans<mn){
       mn=temp_ans;
     }
@@ -42,15 +58,16 @@ int main()
 {
 	kush_gupta();
 	w(test_cases){
-    ll n=0;
-    cin>>n;
-    vll arr(n);
-    rep(i,0,n){
-      cin>>arr[i];
-    }
+    string s="";
+    cin>>s;
     memset(t,-1,sizeof(t));
-    ll res=mcm(arr,1,n-1);
-    cout<<res<<endl;
+    cout<<solve(s,0,s.length()-1)<<endl;
+    /*for (ll i=0;i<s.length();i++){
+      for(ll j=0;j<s.length();j++){
+        cout<<t[i][j]<<" ";
+      }
+      cout<<endl;
+    }*/
   }
 	return 0;
 }

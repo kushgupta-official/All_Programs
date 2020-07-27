@@ -4,7 +4,7 @@
 using namespace std;
 # define ll long long
 # define rep(i,a,b) for(ll i=a;i<b;i++)
-# define vi std::vector<int>
+# define vi std::vectorx<int>
 # define vll std::vector<ll>
 # define w(x) ll x=0; cin>>x; while(x--)
 # define endl '\n'
