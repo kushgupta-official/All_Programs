@@ -1,7 +1,13 @@
-// CPP program to illustrate substr() 
-#include <string.h> 
-#include <iostream> 
-using namespace std; 
+# include <bits/stdc++.h>
+
+using namespace std;
+# define ll long long
+# define rep(i,a,b) for(ll i=a;i<b;i++)
+# define vi std::vector<int>
+# define vll std::vector<ll>
+# define w(x) ll x=0; cin>>x; while(x--)
+# define endl '\n'
+
 
 void kush_gupta(){
   ios::sync_with_stdio(0);
@@ -16,16 +22,10 @@ void kush_gupta(){
 int main() 
 { 
   kush_gupta();
-
-  std::string str="0123456789";
-   
-  std::string str2 = str.substr (2,5-(2-1));
-  cout<<str2<<endl;
-  /*std::size_t pos = str.find("live");
-
-  std::string str3 = str.substr (pos);
-
-  std::cout << str2 << ' ' << str3 << '\n';
-*/
+  stringstream ss;
+  ss<<0<<" "<<1<<" "<<1;
+  string temp;
+  ss>>temp;
+  cout<<temp<<endl;
   return 0;
 } 
