@@ -18,28 +18,20 @@ void kush_gupta(){
   #endif
 }
 
-/*ll count_subarrays(ll n,ll m,const vll &a,const vll &b){
-  if(n==0 || m==0){
-    return 0;
-  }
-  if(a[n-1]==b[m-1]){
-    return 1+count_subarrays(n-1,m-1,a,b);
-  }
-  else{
-    return max(count_subarrays(n-1,m,a,b),count_subarrays(n,m-1,a,b));
-  }
-}*/
 ll count_subarrays(ll n,const vll &a){
-  ll t[n],sum=1;
-  t[0]=1;
+  ll toReturn = 1;
+  vll res(n);
+  res[0]=1;
   rep(i,1,n){
-    if(a[i-1]<=a[i]){
-      t[i]+=t[i-1]+1;
-    }
-   sum+=t[i];
+  	res[i]=1;
+  	if(a[i]>=a[i-1]){
+  		res[i]+=res[i-1];
+  	}
+  	toReturn+=res[i];
   }
-  return sum;
+  return toReturn;
 }
+
 int main()
 {
 	kush_gupta();
@@ -50,10 +42,6 @@ int main()
     rep(i,0,n){
       cin>>a[i];
     }
-    ll m=n;
-    /*vll b=a;
-    sort(b.begin(), b.end());
-*/
     ll res=count_subarrays(n,a);
     cout<<res<<endl;
   }
