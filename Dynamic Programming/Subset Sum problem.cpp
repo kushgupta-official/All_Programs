@@ -24,7 +24,6 @@ bool subset_sum(ll sum,const vll &arr, ll n){
     return 0;
   }
   if (sum==0){
-    //cout<<"hi";
     return 1;
   }
   if (arr[n-1]<=sum){
