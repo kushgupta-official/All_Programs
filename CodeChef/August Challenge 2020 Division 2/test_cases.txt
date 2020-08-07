@@ -1,4 +1,4 @@
-10
+9
 akramkeeanany
 aka
 supahotboy
@@ -17,5 +17,13 @@ acdeedaghfaee
 eeaghfa
 kfldsvnsdovklapkmver
 vnap
-ababbcd
-bad
+
+o/p:
+aaakaeekmnnry
+abohotypsu
+aabadawyehhorst
+abdfcegh
+abcdgfe
+adhbcefg
+a
+(last 2 were wrong)

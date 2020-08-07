@@ -40,7 +40,6 @@ ll t[10][1000001];
 ll done=0;
 ll dp_subset_sum(vll &arr,ll n,ll sum){
   if(t[n][sum]!=-1){
-    //cout<<"yo";
     return t[n][sum];
   }
   rep(j,done-1,sum+1){
