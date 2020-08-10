@@ -9,6 +9,7 @@ using namespace std;
 # define vp vector <pair <ll,ll> >
 # define vpp vector <pair <pair <ll,ll>,ll> >
 # define pp pair <pair <ll,ll>,ll>
+# define pr pair <ll,ll>
 # define pb(x) push_back(x)
 # define w(x) ll x=0; cin>>x; while(x--)
 # define endl '\n'
@@ -18,13 +19,13 @@ void kush_gupta(){
   cin.tie(0);
   cout.tie(0);
   #ifndef ONLINE_JUDGE
-  freopen("input.txt", "r", stdin);
-  freopen("output.txt", "w", stdout);
+  freopen("input.txt", "r", stdin) ;
+  freopen("output.txt", "w", stdout) ;
   #endif
 }
 
-bool comp(pair <pair <ll,ll>,ll> p1, pair <pair <ll,ll>,ll> p2){
-  return p1.first.second<p2.first.second;
+bool comp(pr p1,pr p2){
+  return p1.second>p2.second;
 }
 
 int main()
@@ -33,23 +34,30 @@ int main()
 	w(test_cases){
     ll n=0;
     cin>>n;
-    vpp t(n);
+    ll temp=0;
+    vp t(n);
     rep(i,0,n){
-      cin>>t[i].first.first;
-      t[i].second=i+1;
-    }
-    rep(i,0,n){
-      cin>>t[i].first.second;
+      cin>>temp;
+      cin>>t[i].first>>t[i].second;
     }
     sort(t.begin(), t.end(),comp);
-    ll next=0;
     rep(i,0,n){
-      if(t[i].first.first>=next){
-        cout<<t[i].second<<" ";
-        next=t[i].first.second;
-      }
+      cout<<t[i].first<<"  ";
     }
     cout<<endl;
-  }
+    rep(i,0,n){
+      cout<<t[i].second<<"  ";
+    }
+    cout<<endl;
+    ll profit=0;
+    ll c=0;
+    std::vector<bool> tb(n,0);
+    vll tm(n);
+    rep(i,0,n){
+      tm[i]=i+1;
+    }
+    rep(i,0,n){
+      
+    }
 	return 0;
 }
