@@ -1,0 +1,42 @@
+Dynamic Programming on Trees : 
+	
+	Format of Function:
+
+			<return type> func(--inputs--){
+				base condition	---- 1
+
+				Hypothesis	---- 2		//never go deep into it, let it be
+
+				Induction	---- 3		//will be changed according to question
+			}
+
+
+	SYNTAX :
+
+			int solve (Node *root, int &res){
+
+				//Base Condition
+				if (root==NULL){
+					return 0;
+				}
+
+				//Hypothesis (Mostly Constant)
+				int l=solve(root->left,res);
+				int r=solve(root->right,res);
+
+				//Induction (Depend on question)
+				//for diameter of the tree
+
+				int temp=max(l,r)+1;
+				int ans=max(temp,1+l+r);	//if diameter cross this node
+				res=max(res,ans);
+
+				return temp;	//returning height of a node
+			}
+
+
+			main(){
+				int res=INT_MIN;
+				solve(root,res);
+				return res;
+			}

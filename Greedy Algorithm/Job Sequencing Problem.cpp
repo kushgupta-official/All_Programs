@@ -1,5 +1,6 @@
-#include<bits/stdc++.h> 
-using namespace std; 
+# include <bits/stdc++.h>
+
+using namespace std;
 # define ll long long
 # define ld long double
 # define rep(i,a,b) for(ll i=a;i<b;i++)
@@ -22,80 +23,40 @@ void kush_gupta(){
   freopen("output.txt", "w", stdout) ;
   #endif
 }
-struct Job 
-{ 
-  char id; 
-  ll deadLine, profit; 
-}; 
-struct DisjointSet 
-{ 
-  ll *parent; 
-  DisjointSet(ll n) 
-  { 
-    parent = new ll[n+1]; 
 
-    for (ll i = 0; i <= n; i++) 
-      parent[i] = i; 
-  } 
+bool comp(pr p1,pr p2){
+  return (p1.first*p2.second)>(p1.second/p2.first);
+}
 
-  ll find(ll s) 
-  { 
-    if (s == parent[s]) 
-      return s; 
-    return parent[s] = find(parent[s]); 
-  } 
-
-  void merge(ll u, ll v) 
-  { 
-    parent[v] = u; 
-  } 
-}; 
-bool cmp(Job a, Job b) 
-{ 
-  return (a.profit > b.profit); 
-} 
-
-ll findMaxDeadline(vector<Job> &arr, ll n) 
-{ 
-  ll ans = INT_MIN; 
-  for (ll i = 0; i < n; i++) 
-    ans = max(ans, arr[i].deadLine); 
-  return ans; 
-} 
-
-void printJobScheduling(vector<Job> &arr, ll n) 
-{ 
-  sort(arr.begin(), arr.end(), cmp); 
-  ll maxDeadline = findMaxDeadline(arr, n); 
-  DisjointSet ds(maxDeadline); 
-  ll profit=0,count=0;
-  for (ll i = 0; i < n; i++) 
-  { 
-    ll availableSlot = ds.find(arr[i].deadLine); 
-    if (availableSlot > 0) 
-    { 
-      ds.merge(ds.find(availableSlot - 1),availableSlot); 
-      profit+=arr[i].profit;
-      count++; 
-    } 
-  } 
-  cout<<count<<" "<<profit<<endl;
-} 
-
-int main() 
-{ 
+int main()
+{
   kush_gupta();
   w(test_cases){
-    //cout<<"hi";
     ll n=0;
     cin>>n;
-    std::vector<Job> t(n);
+    ll temp=0;
+    vector <pair <ld,ld> > t(n);
     rep(i,0,n){
-      cin>>t[i].id;
-      cin>>t[i].deadLine;
-      cin>>t[i].profit;
+      cin>>temp;
+      cin>>t[i].first>>t[i].second;
     }
-    printJobScheduling(t,n);
-  } 
-  return 0; 
-} 
+    sort(t.begin(), t.end(),comp);
+    // rep(i,0,n){
+    //   cout<<t[i].first<<" ";
+    // }
+    // cout<<endl;
+    // rep(i,0,n){
+    //   cout<<t[i].second<<" ";
+    // }
+    // cout<<endl;
+  ll profit=0,count=0;
+  rep(i,0,n){
+    if(count<t[i].first){
+      count++;
+      profit+=t[i].second;
+    }
+  }
+  cout<<count<<" "<<profit<<endl;
+}
+  return 0;
+}
