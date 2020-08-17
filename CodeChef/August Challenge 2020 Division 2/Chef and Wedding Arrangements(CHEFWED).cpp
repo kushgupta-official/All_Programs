@@ -18,28 +18,41 @@ void kush_gupta(){
   freopen("output.txt", "w", stdout) ;
   #endif
 }
+/*
+  a[i]=min(a[i],)
+*/
+ll solve(ll n,ll k,const vll &a){
+  vll dp(n+1);
+  dp[0]=0;
+  for (ll i=1;i<n+1;i++){
+    dp[i]=dp[i-1]+k;
+    map <ll,ll> mp;
+    ll repeats=0;
+    for (ll j=i;j>0;j--){
+      mp[a[j]]++;
+      if(mp[a[j]]==2){
+        repeats+=2;
+      }
+      else if(mp[a[j]]>2){
+        repeats++;
+      }
+      dp[i]=min(dp[i],dp[j-1]+k+repeats);
+    }
+  }
+  return dp[n]; 
+}
 
 int main()
 {
 	kush_gupta();
 	w(test_cases){
-    unordered_map <ll,ll> mp;
-    ll n=0,k=0,res=0;
+    ll n=0,k=0;
     cin>>n>>k;
-    res=k;
-    rep(i,0,n){
-      ll temp=0;
-      cin>>temp;
-      mp[temp]++;
-      if(mp[temp]>1 && k!=1){
-        res++;
-      }
-      if(mp[temp]>k){
-        res+=k;
-        mp.clear();
-        mp[temp]++;
-      }
+    vll arr(n+1,0);
+    rep(i,1,n+1){
+      cin>>arr[i];
     }
+    ll res=solve(n,k,arr);
     cout<<res<<endl;
   }
 	return 0;
