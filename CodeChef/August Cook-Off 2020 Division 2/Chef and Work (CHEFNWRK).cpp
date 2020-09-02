@@ -22,29 +22,42 @@ void kush_gupta(){
   freopen("output.txt", "w", stdout) ;
   #endif
 }
-pair <ll,ll> p;
-bool comp(pair <ll,ll> p1,pair <ll,ll> p2){
-  return int(sqrt(pow((p1.first-p.first),2)+pow((p1.second-p.second),2)))
-          <int(sqrt(pow((p2.first-p.first),2)+pow((p2.second-p.second),2)));
-}
 
 int main()
 {
 	kush_gupta();
 	w(test_cases){
-    ll n=0;
-    cin>>n;
-    std::vector<pair <ll,ll> > a;
-    ll f=0,s=0;
+    ll n=0,k=0;
+    cin>>n>>k;
+    vll a(n);
     rep(i,0,n){
-      cin>>f;
-      cin>>s;
-      a.push_back(pair<ll,ll>(f,s));
+      cin>>a[i];
     }
-    //p=a[0];
-    // //sort(a.begin(), a.end(),comp);
-    rep(i,0,n){
-      cout<<a[i].first<<" "<<a[i].second<<endl;
+    ll temp=0,i=0,j=0,rounds=0;
+    for (i=0;i<n;i++){
+      temp=k;
+      if(a[i]<=temp){
+        temp-=a[i];
+        rounds++;
+      }
+      else{
+        break;
+      }
+      for (j=i+1;j<n;j++){
+        if(a[j]<=temp){
+          temp-=a[j];
+          i=j;
+        }
+        else{
+          j=n;
+        }
+      }
+    }
+    if(rounds==0 || i<n-1){
+      cout<<-1<<endl;
+    }
+    else{
+      cout<<rounds<<endl;
     }
   }
 	return 0;
