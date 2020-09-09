@@ -35,9 +35,6 @@ int main()
       cin>>arr[i];
       if(arr[i]==0){
         temp++;
-        // if(temp==1){
-        //   ones++;
-        // }
       }
       else{
         if(temp>count){
@@ -66,22 +63,6 @@ int main()
     else{
       cout<<"No\n";
     }
-  //   if(count==1){
-  //     if(ones==1){
-  //       cout<<"Yes\n";
-  //     }
-  //     else{
-  //       cout<<"No\n";
-  //     }
-  //   }
-  //   else{
-  //     if(count%2==0){
-  //       cout<<"No\n";
-  //     }
-  //     else{
-  //       cout<<"Yes\n";
-  //     }
-  //   }
    }
 	return 0;
 }

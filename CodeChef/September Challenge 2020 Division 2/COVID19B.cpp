@@ -21,6 +21,7 @@ void solve(){
 		cin>>speed[i];
 		arr[i]=1;
 	}
+	// if(n==3){ 
 	ll min=INT_MAX,max=INT_MIN;
 	for (ll i=1;i<=n;i++){
 		for (ll j=i+1;j<=n;j++){
@@ -31,12 +32,45 @@ void solve(){
 		}
 		if(arr[i]>max){
 			max=arr[i];
+		//	cout<<i<<endl;
 		}
 		if(arr[i]<min){
 			min=arr[i];
 		}
 	}
+	// for (ll i=1;i<=n;i++){
+	// 	cout<<arr[i]<<" ";
+	// }cout<<endl;
 	cout<<min<<" "<<max<<endl;
+	// }
+	// else{
+	// ll effect[n+1];
+	// for (ll i=n;i>0;i--){
+	// 	effect[i]=0;
+	// 	for (ll j=i-1;j>0;j--){
+	// 		if ((i-j)<((i+speed[i]*1)-(j+speed[j]*1))){
+	// 			effect[i]++;
+	// 		}
+	// 	}
+	// }
+	// ll min=INT_MAX,max=INT_MIN;
+	// for (ll i=1;i<=n;i++){
+	// 	for (ll j=i+1;j<=n;j++){
+	// 		if (((j+speed[j]*1)-(i+speed[i]*1))<(j-i)){
+	// 			arr[i]+=effect[j];
+	// 			arr[j]++;
+	// 		}
+	// 	}
+	// 	if(arr[i]>max){
+	// 		max=arr[i];
+	// 	//	cout<<i<<endl;
+	// 	}
+	// 	if(arr[i]<min){
+	// 		min=arr[i];
+	// 	}
+	// }
+	// cout<<min<<" "<<max<<endl;
+ //  }
 }
 
 int main(){
@@ -48,3 +82,44 @@ int main(){
 	}
 	return 0;
 }
+/*Failed Test Cases:
+5
+2 2 2 1 1
+5
+2 2 1 1 1
+5
+2 1 1 1 1
+4
+2 2 1 1
+*/
+/*
+14
+3
+1 2 3
+3
+3 2 1
+3
+0 0 0
+3
+1 3 2
+4
+4 2 2 3
+5
+3 2 4 1 5
+5
+5 5 0 0 0
+5
+1 2 3 4 5
+4
+0 0 0 1
+4
+0 1 0 1
+5
+2 2 2 1 1
+5
+2 2 1 1 1
+5
+2 1 1 1 1
+4
+2 2 1 1
+*/
