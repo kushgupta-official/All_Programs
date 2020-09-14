@@ -1,125 +1,92 @@
-# include <bits/stdc++.h>
-# define ll long long int
+#include<bits/stdc++.h>
+#define ll long long 
+#define OJ \
+        freopen("input.txt","r",stdin); \
+        freopen("output.txt","w",stdout);
 using namespace std;
+int mod=1000000007;
+int main()
+{
+    //    OJ;
+int T;
+cin>>T;
+while(T--)
+{
+        int n;
+        cin>>n;
+        int a[n];
+        vector<int> ans;
+        for(int i=0;i<n;i++)
+        {
+                cin>>a[i];
+        }
+        for(int i=0;i<n;i++)
+        {
+                int b[n]={0};
+                double meet[n]={0};
+                b[i]=1;
 
-void kush_gupta(){
-	ios::sync_with_stdio(0);
-	cin.tie(0);
-	cout.tie(0);
-	#ifndef ONLINE_JUDGE
-	freopen("input.txt","r",stdin);
-	freopen("output.txt","w",stdout);
-	#endif
-}
+                for(int j=i;j<n;j++)
+                {
+                  if(a[j]<a[i])
+                  {
+                          b[j]=1;
+                          meet[j]=double(j-i)/double(a[i]-a[j]);
 
-void solve(){
-	ll n=0;
-	cin>>n;
-	ll arr[n+1];
-	ll speed[n+1];
-	for (ll i=1;i<=n;i++){
-		cin>>speed[i];
-		arr[i]=1;
-	}
-	// if(n==3){ 
-	ll min=INT_MAX,max=INT_MIN;
-	for (ll i=1;i<=n;i++){
-		for (ll j=i+1;j<=n;j++){
-			if (((j+speed[j]*5)-(i+speed[i]*5))<(j-i)){
-				arr[i]++;
-				arr[j]++;
-			}
-		}
-		if(arr[i]>max){
-			max=arr[i];
-		//	cout<<i<<endl;
-		}
-		if(arr[i]<min){
-			min=arr[i];
-		}
-	}
-	// for (ll i=1;i<=n;i++){
-	// 	cout<<arr[i]<<" ";
-	// }cout<<endl;
-	cout<<min<<" "<<max<<endl;
-	// }
-	// else{
-	// ll effect[n+1];
-	// for (ll i=n;i>0;i--){
-	// 	effect[i]=0;
-	// 	for (ll j=i-1;j>0;j--){
-	// 		if ((i-j)<((i+speed[i]*1)-(j+speed[j]*1))){
-	// 			effect[i]++;
-	// 		}
-	// 	}
-	// }
-	// ll min=INT_MAX,max=INT_MIN;
-	// for (ll i=1;i<=n;i++){
-	// 	for (ll j=i+1;j<=n;j++){
-	// 		if (((j+speed[j]*1)-(i+speed[i]*1))<(j-i)){
-	// 			arr[i]+=effect[j];
-	// 			arr[j]++;
-	// 		}
-	// 	}
-	// 	if(arr[i]>max){
-	// 		max=arr[i];
-	// 	//	cout<<i<<endl;
-	// 	}
-	// 	if(arr[i]<min){
-	// 		min=arr[i];
-	// 	}
-	// }
-	// cout<<min<<" "<<max<<endl;
- //  }
-}
+                  }
+                }
+                for(int j=i;j>=0;j--)
+                {
+                  if(a[j]>a[i])
+                  {
+                          b[j]=1;
+                          meet[j]=double(i-j)/double(a[j]-a[i]);
+                  }
+                }
+                for(int k=0;k<n;k++)
+                {
+                      if(b[k]==1&&k!=i)
+                      {
+                         for(int x=k+1;x<n;x++)
+                         {
+                                 if(a[k]>a[x])
+                                 {
+                                double temp=double(x-k)/double(a[k]-a[x]);
+                                if(temp>=meet[k])
+                                {
+                                        b[x]=1;
+                                        meet[x]=temp;
+                                }
+                                 }
 
-int main(){
-	kush_gupta();
-	ll test_cases=0;
-	cin>>test_cases;
-	while(test_cases--){
-		solve();
-	}
-	return 0;
+                         }
+                         for(int x=k-1;x>=0;x--)
+                         {
+                                 if(a[k]<a[x])
+                                 {
+                                double temp=double(k-x)/double(a[x]-a[k]);
+                                if(temp>=meet[k])
+                                {
+                                        b[x]=1;
+                                        meet[x]=temp;
+                                }
+                                 } 
+                         }
+                      }
+                }
+                 int temp=0;
+           for(int m=0;m<n;m++)
+           {
+                  
+                   if(b[m]==1)
+                   {
+                   temp++;
+                   }
+
+           }
+           ans.push_back(temp);
+        }
+        sort(ans.begin(),ans.end());
+        cout<<ans[0]<<" "<<ans[n-1]<<endl;
+}        
 }
-/*Failed Test Cases:
-5
-2 2 2 1 1
-5
-2 2 1 1 1
-5
-2 1 1 1 1
-4
-2 2 1 1
-*/
-/*
-14
-3
-1 2 3
-3
-3 2 1
-3
-0 0 0
-3
-1 3 2
-4
-4 2 2 3
-5
-3 2 4 1 5
-5
-5 5 0 0 0
-5
-1 2 3 4 5
-4
-0 0 0 1
-4
-0 1 0 1
-5
-2 2 2 1 1
-5
-2 2 1 1 1
-5
-2 1 1 1 1
-4
-2 2 1 1
-*/
