@@ -12,11 +12,15 @@ void kush_gupta(){
 	#endif
 }
 
-int main(){
+int main0(){
 	kush_gupta();
 	string s;
 	cin>>s;
+	vector<vector<ll> > arr;
+	for (int i=0;i<s.length();i++){
+		
+	}
 	vector<vector<ll> adj(10);
-	
+	for (int i=0;i<)
 	return 0;
 }
