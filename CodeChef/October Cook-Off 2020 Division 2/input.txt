@@ -1,11 +1,3 @@
-5
-6
-cabdab
-21
-yourcrushlovesyouback
-16
-wubbalubbadubdub
-5
-split
-7
-splitit
+2
+4 6
+1 2
