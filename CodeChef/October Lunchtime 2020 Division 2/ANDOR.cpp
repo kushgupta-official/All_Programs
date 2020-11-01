@@ -1,5 +1,5 @@
 # include <bits/stdc++.h>
-# define ll long long int
+#define ll long long int
 using namespace std;
 
 void kush_gupta(){
@@ -14,13 +14,12 @@ void kush_gupta(){
 
 int main(){
 	kush_gupta();
-	string s;
-	cin>>s;
-	vector<vector<ll> > arr;
-	for (int i=0;i<s.length();i++){
-		
+	ll t=0;
+	cin>>t;
+	while(t--){
+		ll x=0;
+		cin>>x;
+		cout<<x<<" "<<0<<endl;
 	}
-	vector<vector<ll> adj(10);
-	for (int i=0;i<)
 	return 0;
 }
