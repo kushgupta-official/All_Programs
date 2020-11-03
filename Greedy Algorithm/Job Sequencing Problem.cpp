@@ -24,44 +24,64 @@ void kush_gupta(){
   #endif
 }
 
+ll *parent;
+
+ll find(ll s){
+    if (s == parent[s]) 
+        return s; 
+    return parent[s] = find(parent[s]); 
+} 
+
+void merge(ll u, ll v){ 
+    parent[v] = u; 
+} 
+
 bool comp(pr p1,pr p2){
-	if (p1.first==p2.first){
-  		return p1.second>p2.second;
-  	}
-  	return p1.first<p2.first;
+	return p1.second>p2.second;
 }
 
 int main()
 {
   kush_gupta();
   w(test_cases){
+  	ll numberOfJobs=0,maxProfit=0;
     ll n=0;
     cin>>n;
     ll temp=0;
-    vector <pair <ld,ld> > t(n);
+    vector <pair <ll,ll> > t(n);
     rep(i,0,n){
       cin>>temp;
       cin>>t[i].first>>t[i].second;
     }
     sort(t.begin(), t.end(),comp);
+    // rep(i,0,n){
+    //   cout<<t[i].first<<" ";
+    // }
+    // cout<<endl;	
+    // rep(i,0,n){
+    //   cout<<t[i].second<<" ";
+    // }
+    // cout<<endl;
+    ll maxDeadline=INT_MIN;
+    for(ll i=0;i<n;i++){
+    	maxDeadline=max(maxDeadline,t[i].first);
+    }
 
-    rep(i,0,n){
-      cout<<t[i].first<<" ";
+    parent=new ll(maxDeadline+1);
+
+    for (ll i=0;i<=maxDeadline;i++){
+    	parent[i]=i;
     }
-    cout<<endl;	
-    rep(i,0,n){
-      cout<<t[i].second<<" ";
-    }
-    cout<<endl;
-    ll i=0,time=0,numberOfJobs=0,maxProfit=0;
-    while (i<n){
-    	if (time<t[i].first){
-    		time=t[i].first;
-    		numberOfJobs++;
-    		maxProfit+=t[i].second;
-    	}
-    	i++;
-    }
+    for (ll i = 0; i < n; i++) 
+    {
+        ll availableSlot = find(t[i].first);
+        if (availableSlot > 0) 
+        {
+            merge(find(availableSlot - 1),availableSlot); 
+            numberOfJobs++;
+            maxProfit+=t[i].second;
+        } 
+    } 
     cout<<numberOfJobs<<" "<<maxProfit<<endl;
   }
   return 0;
