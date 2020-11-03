@@ -25,7 +25,10 @@ void kush_gupta(){
 }
 
 bool comp(pr p1,pr p2){
-  return (p1.first*p2.second)>(p1.second/p2.first);
+	if (p1.first==p2.first){
+  		return p1.second>p2.second;
+  	}
+  	return p1.first<p2.first;
 }
 
 int main()
@@ -41,22 +44,25 @@ int main()
       cin>>t[i].first>>t[i].second;
     }
     sort(t.begin(), t.end(),comp);
-    // rep(i,0,n){
-    //   cout<<t[i].first<<" ";
-    // }
-    // cout<<endl;
-    // rep(i,0,n){
-    //   cout<<t[i].second<<" ";
-    // }
-    // cout<<endl;
-  ll profit=0,count=0;
-  rep(i,0,n){
-    if(count<t[i].first){
-      count++;
-      profit+=t[i].second;
+
+    rep(i,0,n){
+      cout<<t[i].first<<" ";
     }
+    cout<<endl;	
+    rep(i,0,n){
+      cout<<t[i].second<<" ";
+    }
+    cout<<endl;
+    ll i=0,time=0,numberOfJobs=0,maxProfit=0;
+    while (i<n){
+    	if (time<t[i].first){
+    		time=t[i].first;
+    		numberOfJobs++;
+    		maxProfit+=t[i].second;
+    	}
+    	i++;
+    }
+    cout<<numberOfJobs<<" "<<maxProfit<<endl;
   }
-  cout<<count<<" "<<profit<<endl;
-}
   return 0;
 }
