@@ -29,16 +29,26 @@ int main()
 	    for (ll i=0;i<n+1;i++){
 	    	isPrime[i]=1;
 	    }
+	    primeFactors[1]=1;
 	    for (ll i=2;i<=n;i++){
 	    	if (isPrime[i]){
-	    		for (ll j=i;j<=n;j+=i){
+	    		primeFactors[i]=i;
+	    		for (ll j=i*i;j<=n;j+=i){
 	    			isPrime[j]=0;
 	    			if (primeFactors[j]==0)
 	    				primeFactors[j]=i;
 	    		}
 	    	}
 	    }
-	    
+	    map <ll,ll> res;
+	    while (n!=1){
+	    	res[primeFactors[n]]++;
+	    	n/=primeFactors[n];
+	    }
+	    for (auto ite=res.begin();ite!=res.end();ite++){
+	    	cout<<ite->first<<" "<<ite->second<<" ";
+	    }
+	    cout<<endl;
 	}
 	return 0;
 }
