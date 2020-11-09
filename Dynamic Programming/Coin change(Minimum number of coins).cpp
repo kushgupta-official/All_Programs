@@ -34,8 +34,10 @@ ll main_func(ll v,ll n,const vll &c){
         t[i][j]=t[i-1][j];
     }
   }
-  if (t[n][v]==)
-  return t[n][v];
+  if (t[n][v]==INT_MAX-1)
+    return t[n][v];
+  else
+    return -1;
 }
 //2147483646
 int main()
