@@ -13,7 +13,7 @@ void kush_gupta(){
 	#endif
 }
 
-ll dp(vector <ll> &a,ll n,ll x){
+int dp(vector <int> &a,int n,int x){
 	// if (x==0){
 	// 	return 1;
 	// }
@@ -26,16 +26,16 @@ ll dp(vector <ll> &a,ll n,ll x){
 	// else{
 	// 	return dp(a,n-1,x);
 	// }
-	vector <vector <ll> > t(n+1,vector <ll> (x+1));
-	// ll t[n+1][x+1];
-	for (ll i=0;i<=n;i++){
+	vector <vector <int> > t(n+1,vector <int> (x+1));
+	// int t[n+1][x+1];
+	for (int i=0;i<=n;i++){
 		t[i][0]=1;
 	}
-	for (ll j=1;j<=x;j++){
+	for (int j=1;j<=x;j++){
 		t[0][j]=0;
 	}
-	for (ll i=1;i<=n;i++){
-		for (ll j=1;j<=x;j++){
+	for (int i=1;i<=n;i++){
+		for (int j=1;j<=x;j++){
 			if (a[i-1]<=j){
 				t[i][j]=((t[i][j-a[i-1]]%mod)+(t[i-1][j]%mod))%mod;
 			}
@@ -49,14 +49,14 @@ ll dp(vector <ll> &a,ll n,ll x){
 
 int main(){
 	kush_gupta();
-	ll n=0,x=0;
+	int n=0,x=0;
 	cin>>n>>x;
-	vector <ll> a(n);
-	for (ll i=0;i<n;i++){
+	vector <int> a(n);
+	for (int i=0;i<n;i++){
 		cin>>a[i];
 		//cout<<a[i]<<endl;
 	}
-	ll  res=dp(a,n,x);
+	int  res=dp(a,n,x);
 	cout<<res;
 	return 0;
 }
