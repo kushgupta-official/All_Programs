@@ -13,7 +13,7 @@ void kush_gupta(){
 	#endif
 }
 
-ll dp(ll a[],ll n,ll x){
+ll dp(vector <ll> &a,ll n,ll x){
 	// if (x==0){
 	// 	return 1;
 	// }
@@ -26,8 +26,8 @@ ll dp(ll a[],ll n,ll x){
 	// else{
 	// 	return dp(a,n-1,x);
 	// }
-
-	ll t[n+1][x+1];
+	vector <vector <ll> > t(n+1,vector <ll> (x+1));
+	// ll t[n+1][x+1];
 	for (ll i=0;i<=n;i++){
 		t[i][0]=1;
 	}
@@ -51,7 +51,7 @@ int main(){
 	kush_gupta();
 	ll n=0,x=0;
 	cin>>n>>x;
-	ll a[n];
+	vector <ll> a(n);
 	for (ll i=0;i<n;i++){
 		cin>>a[i];
 		//cout<<a[i]<<endl;
