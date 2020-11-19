@@ -16,16 +16,17 @@ int main(){
 	kush_gupta();
 	ll n=0;
 	cin>>n;
-	vector <ll> a(n);
-	for (int i=0;i<n;i++){
-		cin>>a[i];
+	vector <bool> isThere(n+1,0);
+	ll temp=0;
+	for (ll i=0;i<n-1;i++){
+		cin>>temp;
+		isThere[temp]=1;
 	}
-	ll sum=0,best=INT_MIN;
-	for (ll i=0;i<n;i++){
-		sum=max(sum+a[i],a[i]);
-		// cout<<sum<<" ";
-		best=max(best,sum);
+	for (ll i=1;i<=n;i++){
+		if (!isThere[i]){
+			cout<<i;
+			break;
+		}
 	}
-	cout<<best;
 	return 0;
 }
