@@ -1,5 +1,5 @@
 # include <bits/stdc++.h>
-
+# define ll long long int
 using namespace std;
 
 void kush_gupta(){
@@ -12,35 +12,48 @@ void kush_gupta(){
 	#endif
 }
 
-int n=3;
-vector <int> permutation;
-vector <bool> chosen(n+1,0);
-
-void display(){
-	for (int i=0;i<permutation.size();i++){
-		cout<<permutation[i]<<" ";
-	}
-	cout<<endl;
-}
-
-void generate_permutations(){
-	if (permutation.size()==n){
-		display();
-	}
-	else{
-		for (int i=1;i<=n;i++){
-			if (chosen[i])	continue;
-			permutation.push_back(i);
-			chosen[i]=true;
-			generate_permutations();
-			permutation.pop_back();
-			chosen[i]=false;
-		}
-	}
-}
-
 int main(){
 	kush_gupta();
-	generate_permutations();
+	ll k=0;
+	cin>>k;
+	while(k--){
+		string s;
+		cin>>s;
+		string t;
+		cin>>t;
+		if (t.length()>s.length()){
+			cout<<"NO\n";
+		}
+		else{
+			bool flag=1;
+			ll i=0,j=0;
+			for (ll i=0;i<t.length();i++){
+				if (s[j]!=t[i]){
+					if (j+1>=s.length()){
+						flag=0;
+						break;
+					}
+					else if (s[j]=='-' && s[j+1]=='-'){
+						j++;
+					}
+					else if (s[j]=='-' && s[j+1]=='+'){
+						flag=0;
+						break;
+					}
+					else if (s[j]=='+'){
+						flag=0;
+						break;
+					}
+				}
+				j++;
+			}
+			if (flag==1 && j==s.length()){
+				cout<<"YES\n";
+			}
+			else{
+				cout<<"NO\n";
+			}
+		}
+	}
 	return 0;
 }
