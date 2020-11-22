@@ -16,31 +16,34 @@ int main(){
 	kush_gupta();
 	ll n=0,x=0;
 	cin>>n>>x;
-	vector <ll> a(n);
+	vector <pair <ll,ll> > a(n);
 	for (ll i=0;i<n;i++){
-		cin>>a[i];
+		cin>>a[i].first;
+		a[i].second=i+1;
 	}
+	if (n!=1){
 	sort(a.begin(), a.end());
-	ll i=0,j=1;
-	ll sum=-1;
-	while (i<j){
-		sum=a[i]+a[j];
-		if (sum<x){
-			j++;
+	for (ll i=0;i<n;i++){
+		ll toFind=x-a[i].first;
+		ll f=i+1,s=n-1,mid=-1;
+		while(f<=s){
+			mid=f+(s-f)/2;
+			if (a[mid].first==toFind){
+				break;
+			}
+			else if(a[mid].first>toFind){
+				s=mid-1;
+			}
+			else{
+				f=mid+1;
+			}
 		}
-		else if (sum>x){
-			j--;
-			i++;
-		}
-		else{
-			break;
+		if(a[mid].first==toFind){
+			cout<<a[i].second<<" "<<a[mid].second;
+			return 0;
 		}
 	}
-	if (i>=j){
-		cout<<"IMPOSSIBLE";
 	}
-	else{
-		cout<<i+1<<" "<<j+1;
-	}
+	cout<<"IMPOSSIBLE";
 	return 0;
 }
