@@ -26,10 +26,14 @@ int main(){
 		auto ite=result.upper_bound(a[i]);
 		if(ite==result.end()){
 			result.insert(a[i]);
-			cout<<a[i]<<" ";
+			// cout<<a[i]<<" ";
+		}
+		else{
+			result.erase(ite);
+			result.insert(a[i]);
 		}
 	}
-	cout<<endl;
+	// cout<<endl;
 	cout<<result.size();
 	return 0;
 }
