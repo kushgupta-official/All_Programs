@@ -20,24 +20,20 @@ int main(){
 	for (ll i=0;i<n;i++){
 		cin>>ids[i];
 	}
-	ll curr=1;
-	ll fp=0,sp=1;
-	ll res=INT_MIN;
-	while (fp<n-1 && sp<n){
-		if(fp==sp){
-			sp++;
+	set <ll> s;
+	ll res=0;
+	for (ll i=0,j=0;i<n;i++){
+		if (s.find(ids[i])!=s.end()){
+			while(ids[j]!=ids[i]){
+				s.erase(ids[j]);
+				j++;
+			}
+			s.erase(ids[j]);
+			j++;
 		}
-		if (ids[fp]==ids[sp]){
-			fp++;
-			curr=1;
-		}
-		else{
-			sp++;
-			curr++;
-		}
-		res=max(curr,res);
-		cout<<fp<<" "<<sp<<" ";
+		s.insert(ids[i]);
+		res=max(res,i-j+1);
 	}
-	cout<<endl<<res;
+	cout<<res<<endl;
 	return 0;
 }
