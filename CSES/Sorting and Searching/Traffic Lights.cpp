@@ -18,7 +18,7 @@ int main(){
 	cin>>x>>n;
 	set <ll> s;
 	multiset <ll> ms;
-	s.insert(0);
+	s.insert(0);p
 	s.insert(x);
 	ms.insert(x);
 	for (ll i=0;i<n;i++){
