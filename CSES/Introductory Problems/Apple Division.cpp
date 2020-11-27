@@ -23,23 +23,24 @@ ll sum(){
 	return toReturn;
 }
 
-void min_diff(ll n,const vector <ll> &w){
+void min_diff(ll n,const vector <ll> &w, ll x){
 	if (x==n){
+		// cout<<"ji";
 		res=min(res,abs(temp_sum2-temp_sum1));
 	}
 	else{
 		w1.push_back(w[x]);
 		temp_sum1-=w[x];
 		temp_sum2+=w[x];
-		x++;
+		// x++;
 		res=min(res,abs(temp_sum2-temp_sum1));
-		min_diff(n,w);
+		min_diff(n,w,x+1);
 		temp_sum1+=w1.back();
 		temp_sum2-=w1.back();
 		w1.pop_back();
-		x++;
+		// x++;
 		res=min(res,abs(temp_sum2-temp_sum1));
-		min_diff(n,w);
+		min_diff(n,w,x+1);
 	}
 }
 
@@ -52,9 +53,9 @@ int main(){
 		cin>>weights[i];
 		temp_sum1+=weights[i];
 	}
-	//	cout<<"hi";
+		// cout<<"hi";
 
-	min_diff(n,weights);
+	min_diff(n,weights,x);
 	//cout<<"hi";
 	cout<<res;
 	return 0;
