@@ -18,27 +18,35 @@ void kush_gupta(){
   cin.tie(0);
   cout.tie(0);
   #ifndef ONLINE_JUDGE
-  	freopen("input.txt", "r", stdin) ;
-  	freopen("output.txt", "w", stdout) ;
+  freopen("input.txt", "r", stdin) ;
+  freopen("output.txt", "w", stdout) ;
   #endif
 }
 
 int main()
 {
   kush_gupta();
-  ll i=2;
-  w(t){
-    ll x=0,y=0,n=0;
-    cin>>x>>y>>n;
-    ll res=0;
-    rep(z,0,n+1){
-      if ((x^z)<(y^z)){
-        // cout<<z<<" ";
-        res++;
-      }
+  ll t=0;
+  cin>>t;
+  while(t--){
+    ll n=0;
+    cin>>n;
+    vll v(n);
+    rep(i,0,n){
+      cin>>v[i];
     }
-    cout<<res<<endl;
-    //cout<<endl<<i++<<" "<<res<<endl;
+    ll sum=0;
+    sum+=v[0];
+    ll i=0;
+    for (i=1;i<n;i++){
+      sum-=1;
+      if (sum==-1){
+        sum++;
+        break;
+      }
+      sum+=v[i];
+    }
+    cout<<i+sum-1<<endl;
   }
   return 0;
 }
