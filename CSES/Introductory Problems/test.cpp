@@ -1,17 +1,7 @@
-# include <bits/stdc++.h>
+#include<bits/stdc++.h>
+using namespace std::chrono; 
 
 using namespace std;
-# define ll long long
-# define ld long double
-# define rep(i,a,b) for(ll i=a;i<b;i++)
-# define vi std::vector<int>
-# define vll std::vector<ll>
-# define vp vector <pair <ll,ll> >
-# define vpp vector <pair <pair <ll,ll>,ll> >
-# define pp pair <pair <ll,ll>,ll>
-# define pb(x) push_back(x)
-# define w(x) ll x=0; cin>>x; while(x--)
-# define endl '\n'
 
 void kush_gupta(){
   ios::sync_with_stdio(0);
@@ -25,20 +15,27 @@ void kush_gupta(){
 
 int main()
 {
-  kush_gupta();
-  ll i=2;
-  w(t){
-    ll x=0,y=0,n=0;
-    cin>>x>>y>>n;
-    ll res=0;
-    rep(z,0,n+1){
-      if ((x^z)<(y^z)){
-        // cout<<z<<" ";
-        res++;
-      }
+  auto start = high_resolution_clock::now(); 
+	kush_gupta();
+    int t;
+    cin>>t;
+    while(t--)
+    {
+        int k,l,m,n,d;
+        cin>>k>>l>>m>>n>>d;
+        int count=0;
+        for(int i=1;i<=d;i++)
+        {
+            if(i%k==0 || i%l==0 || i%m==0 || i%n==0)
+            count++;
+        }
+        cout<<count<<endl;
     }
-    cout<<res<<endl;
-    //cout<<endl<<i++<<" "<<res<<endl;
-  }
-  return 0;
+    auto stop = high_resolution_clock::now(); 
+        auto duration = duration_cast<microseconds>(stop - start); 
+
+    cout << "Time taken by function: "
+         << duration.count() << " microseconds" << endl; 
+
 }
+
