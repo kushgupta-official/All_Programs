@@ -41,26 +41,3 @@ int main(){
 	cout<<res;
 	return 0;
 }
-/*
-#include <bits/stdc++.h>
-using namespace std;
-
-int main() {
-	ios::sync_with_stdio(0);
-	cin.tie(0);
-	int n;
-	cin >> n;
-	int ar[n], br[n];
-	for (int i = 0; i < n; ++i) cin >> ar[i] >> br[i];
-	sort(ar, ar + n);
-	sort(br, br + n);
-	int a = 0, b = 0, ct = 0, res = 0;
-	while (a < n && b < n) {
-		if (ar[a] < br[b]) ++a, ++ct;
-		else ++b, --ct;
-		res = max(res, ct);
-	}
-	cout << res << '\n';
-	return 0;
-}
-*/

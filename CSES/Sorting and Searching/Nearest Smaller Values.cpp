@@ -12,27 +12,27 @@ void kush_gupta(){
   #endif
 }
 
-bool comp(pair <ll,ll> a,pair <ll,ll> b){
-	return a.second<b.second;
-}
-
 int main(){
 	kush_gupta();
 	ll n=0;
 	cin>>n;
-	vector<pair <ll,ll> > timings(n);
+	stack <ll> s;
+	vector <ll> a(n);
 	for (ll i=0;i<n;i++){
-		cin>>timings[i].first>>timings[i].second;
+		cin>>a[i];
 	}
-	sort(timings.begin(), timings.end(),comp);
-	ll res=1;
-	pair<ll,ll> prev=timings[0];
-	for (ll i=1;i<n;i++){
-		if (timings[i].first>=prev.second){
-			prev=timings[i];
-			res++;
+	for (ll i=0;i<n;i++){
+		while(!s.empty() && a[s.top()-1]>=a[i]){
+			s.pop();
 		}
-	}
-	cout<<res;
+		if(s.empty()){
+			cout<<0;
+		}
+		else{
+			cout<<s.top();
+		}
+		s.push(i+1);
+		cout<<" ";
+	}	
 	return 0;
 }
