@@ -26,9 +26,9 @@ ll query(vector <ll> &tree,ll s,ll e,ll tidx,ll l,ll r){
 	if (s>=l && e<=r){
 		return tree[tidx];
 	}
-	ll mid=l+(r-l)/2;
-	ll left=query(tree,s,e,tidx*2+1,l,mid);
-	ll right=query(tree,s,e,tidx*2+2,mid+1,r);
+	ll mid=s+(e-s)/2;
+	ll left=query(tree,s,mid,tidx*2+1,l,r);
+	ll right=query(tree,mid+1,e,tidx*2+2,l,r);
 	return max(left,right);
 }
 
@@ -36,6 +36,7 @@ void update(vector <ll> &tree, vector <ll> &res, ll index, ll value,ll tidx,ll l
 	if (l==r){
 		tree[tidx]=value;
 		res[index]=value;
+		return;
 	}
 	ll mid=l+(r-l)/2;
 	if (mid>index){
@@ -56,16 +57,17 @@ int main(){
 		cin>>a[i].first;
 		a[i].second=i;
 	}
-	sort(a.begin(), a.end(),comp);
+	sort(a.begin(), a.end(), comp);
 	vector <ll> tree(n*4,0);
 	vector <ll> res(n,0);
 	for (ll i=0;i<n;i++){
 		ll ele=a[i].first;
 		ll index=a[i].second;
-		ll res=query(tree,0,index,0,0,n-1);
+		// query(vector <ll> &tree,ll s,ll e,ll tidx,ll l,ll r)
+		ll r=query(tree,0,n-1,0,0,index);
 		// tree,res,index,value,tidx*2+1,l,mid
 // void update(vector <ll> &tree, vector <ll> &res, ll index, ll value,ll tidx,ll l,ll r){
-		update(tree,res,index,res+1,0,0,n-1);
+		update(tree,res,index,r+1,0,0,n-1);
 	}
 	ll answer=INT_MIN;
 	for (ll i=0;i<n;i++){
