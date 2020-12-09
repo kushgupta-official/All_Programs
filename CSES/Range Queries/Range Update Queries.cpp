@@ -67,23 +67,31 @@ int main()
 	kush_gupta();
 	ll n=0,q=0;
 	cin>>n>>q;
-	vll v(n),diff(n);
+	vll v(n,0),diff(n,0);
 	for (ll i=0;i<n;i++){
 		cin>>v[i];
-		diff[i]= i==0?v[i]:v[i]-v[i-1];
+		if (i==0){
+			diff[i]=v[i];
+		}
+		else{
+			diff[i]=v[i]-v[i-1];
+		}
+		// diff[i]= i==0?v[i]:v[i]-v[i-1];
 	}
 	vll tree(4*n,0);
 	build(diff,tree,0,0,n-1);
 	while(q--){
-		ll choice,a,b,c;
+		ll choice=0,a=0,b=0,c=0;
 		cin>>choice;
 		if (choice==1){
 			cin>>a>>b>>c;
 			// a--;b--;
 			diff[a-1]+=c;
-			diff[b-1+1]-=c;
-			update(tree,0,a-1,diff[a],0,n-1);
-			update(tree,0,b-1+1,diff[b+1],0,n-1);
+			update(tree,0,a-1,diff[a-1],0,n-1);
+			if (b<n){
+				diff[b-1+1]-=c;
+				update(tree,0,b-1+1,diff[b-1+1],0,n-1);
+			}
 		}
 		else{
 			cin>>a;
