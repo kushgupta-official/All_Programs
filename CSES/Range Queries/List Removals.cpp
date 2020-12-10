@@ -59,7 +59,7 @@ void update(vll &tree, ll tidx, ll index, ll value, ll l, ll r){
 	else{
 		update(tree,tidx*2+2,index,value,m+1,r);
 	}
-	tree[tidx]=tree[tidx*2+2]+tree[tidx*2+2];
+	tree[tidx]=tree[tidx*2+1]+tree[tidx*2+2];
 }
 
 int main()
