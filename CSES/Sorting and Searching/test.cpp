@@ -1,6 +1,19 @@
-#include <bits/stdc++.h>
-  using namespace std;
-  
+# include <bits/stdc++.h>
+
+using namespace std;
+# define ll long long
+# define ld long double
+# define rep(i,a,b) for(ll i=a;i<b;i++)
+# define vi std::vector<int>
+# define vll std::vector<ll>
+# define vp vector <pair <ll,ll> >
+# define vpp vector <pair <pair <ll,ll>,ll> >
+# define pp pair <pair <ll,ll>,ll>
+# define pb(x) push_back(x)
+# define w(x) ll x=0; cin>>x; while(x--)
+# define endl '\n'
+# define mid(l,r) l+(r-l)/2
+
 void kush_gupta(){
   ios::sync_with_stdio(0);
   cin.tie(0);
@@ -10,57 +23,39 @@ void kush_gupta(){
     freopen("output.txt", "w", stdout) ;
   #endif
 }
-  int main()
-  {
-    kush_gupta(); 
-    int k;
-cin>>k;
-while(k!=0)
-{
-int flag=0;
-string s,t;
-cin>>s>>t;
-int n=s.length();
-int m=t.length();
-for(int i=0,j=0;i<n,j<m; )
-{
-if(s[i]==t[j])
-{
-i++;
-j++;
-if(j==m&&i!=n)
-{
-  if(n>m)
-  {
-      flag=1;
-    cout<<"NO";
+
+void trav(vector <vector <ll> > &v, vector <bool> &visited, ll i){
+  if (visited[i]){
+    return;
   }
-}
-}
-else
-{
-if(t[j]=='+' && s[i]=='-' && s[i+1]=='-')
-{
-s[i]='+';
-i=i+2;
-j=j+1;
-}
-else
-{
-flag=1;
-cout<<"NO";
-break;
-}
-}
-}
-if(flag==0)
-{
-cout<<"YES";
-}
-cout<<endl;
-k--;
+  visited[i]=true;
+  cout<<i<<" ";
+  for (auto i:v[i]){
+    trav(v,visited,i);
+  }
 }
 
-    
-    return 0;
+void dfs(ll n, ll m, vector <vector <ll> > &v){
+  vector <bool> visited(n+1,false);
+  for (ll i=1;i<=n;i++){
+    if (visited[i])
+      continue;
+    trav(v, visited, i);
   }
+}
+
+int main()
+{
+  kush_gupta();
+  ll n=0,m=0;
+  cin>>n>>m;
+  vector <vector <ll> > v(n+1);
+  rep(i,1,m+1){
+    ll x,y;
+    cin>>x>>y;
+    v[x].push_back(y);
+    v[y].push_back(x);
+  } 
+  dfs(n,m,v);
+  return 0;
+}
