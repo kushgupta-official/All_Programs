@@ -24,13 +24,40 @@ void kush_gupta(){
   #endif
 }
 
+void mark(vector <vector <ll> > &matrix, vector <vector <bool> > &visited, ll n, ll m, ll i, ll j){
+	if (visited[i][j]){
+		return;
+	}
+	visited[i][j]=true;
+	if (i>1 && matrix[i-1][j]){
+		mark(matrix,visited,n,m,i-1,j);
+	}
+	if (j>1 && matrix[i][j-1]){
+		mark(matrix,visited,n,m,i,j-1);
+	}
+	if (i<n && matrix[i+1][j]){
+		mark(matrix,visited,n,m,i+1,j);
+	}
+	if (j<m && matrix[i][j+1]){
+		mark(matrix,visited,n,m,i,j+1);
+	}
+	return;
+}
+
 ll solve(vector <vector <ll> > &matrix, ll n, ll m){
-	vector <bool> visited(n+1,false);
+	vector <vector <bool> > visited(n+1, vector <bool> (m+1, false));
+	ll toReturn=0;
 	for (ll i=1;i<=n;i++){
 		for (ll j=1;j<=m;j++){
-			visited[]
+			if (matrix[i][j]==1){
+				if (!visited[i][j]){
+					toReturn++;
+					mark(matrix, visited, n, m, i, j);
+				}
+			}
 		}
 	}
+	return toReturn;
 }
 
 int main()
@@ -48,6 +75,6 @@ int main()
 			}
 		}
 	}
-	ll res=solve(matrix,n,m);
+	cout<<solve(matrix,n,m);
 	return 0;
 }
