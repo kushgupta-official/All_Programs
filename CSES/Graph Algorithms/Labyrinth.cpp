@@ -87,7 +87,9 @@ void solve
 		while(curr!=pair <ll,ll>{start.fi,start.se}){
 			ll i=curr.fi,j=curr.se;
 			// cout<<i<<" "<<j<<endl;
-			res=matrix[i][j].se+res;
+			// res=matrix[i][j].se+res;
+			res+=matrix[i][j].se;
+			// res.push_back(matrix[i][j].se);
 			if (matrix[i][j].se == 'U'){
 				// cout<<"test";
 				curr={i+1,j};
@@ -103,6 +105,7 @@ void solve
 				curr={i,j-1};
 			}
 		}
+		reverse(res.begin(), res.end());
 		cout<<res.size()<<endl<<res;
 	}
 	else{
@@ -114,6 +117,7 @@ void solve
 int main()
 {
 	kush_gupta();
+	auto __start = chrono::high_resolution_clock::now(); 
 	ll n=0,m=0;
 	cin>>n>>m;
 	vector <vector <pair <ll,char> > > matrix(n+1, vector <pair <ll,char> > (m+1,{0,'z'}));
@@ -138,5 +142,19 @@ int main()
 		}
 	}
 	solve(n,m,matrix,start,end);
+	auto __end = chrono::high_resolution_clock::now(); 
+  	
+  	#ifndef ONLINE_JUDGE
+    // Calculating total time taken by the program. 
+    double __time_taken =  
+      chrono::duration_cast<chrono::nanoseconds>(__end - __start).count(); 
+  
+    __time_taken *= 1e-9; 
+  
+    cout << "\nTime taken by program is : " << fixed  
+         << __time_taken << setprecision(9); 
+    cout << " sec" << endl; 
+    #endif
+
 	return 0;
 }
