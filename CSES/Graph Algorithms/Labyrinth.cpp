@@ -117,7 +117,9 @@ void solve
 int main()
 {
 	kush_gupta();
-	auto __start = chrono::high_resolution_clock::now(); 
+	#ifndef ONLINE_JUDGE
+		auto __start = chrono::high_resolution_clock::now(); 
+	#endif
 	ll n=0,m=0;
 	cin>>n>>m;
 	vector <vector <pair <ll,char> > > matrix(n+1, vector <pair <ll,char> > (m+1,{0,'z'}));
@@ -142,19 +144,15 @@ int main()
 		}
 	}
 	solve(n,m,matrix,start,end);
-	auto __end = chrono::high_resolution_clock::now(); 
-  	
-  	#ifndef ONLINE_JUDGE
-    // Calculating total time taken by the program. 
-    double __time_taken =  
-      chrono::duration_cast<chrono::nanoseconds>(__end - __start).count(); 
-  
-    __time_taken *= 1e-9; 
-  
-    cout << "\nTime taken by program is : " << fixed  
-         << __time_taken << setprecision(9); 
-    cout << " sec" << endl; 
-    #endif
+	
+	#ifndef ONLINE_JUDGE
+		auto __end = chrono::high_resolution_clock::now(); 
+		// Calculating total time taken by the program. 
+		double __time_taken=chrono::duration_cast<chrono::nanoseconds>(__end - __start).count(); 
+		__time_taken *= 1e-9; 
+		cout<<"\nTime taken by program is : "<<fixed<< __time_taken << setprecision(9); 
+		cout << " sec" << endl;
+	#endif
 
 	return 0;
 }
