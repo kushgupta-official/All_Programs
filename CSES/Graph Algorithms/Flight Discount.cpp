@@ -16,7 +16,7 @@ using namespace std;
 # define mid(l,r) l+(r-l)/2
 # define fi first
 # define se second
-
+# define INF 1e17
 void kush_gupta(){
   ios::sync_with_stdio(0);
   cin.tie(0);
@@ -27,6 +27,33 @@ void kush_gupta(){
   #endif
 }
 
+ll n=0,m=0;
+vector <vector <pair <ll,ll> > > g;
+vector <ll> dist;
+ll max_dist=INT_MIN;
+vector <pair <ll,ll> > previous;
+
+void solve(){
+	dist[1]=0;
+	priority_queue <pair <ll,ll>, vector <pair <ll,ll> >, greater <pair <ll,ll> > > pq;
+	pq.push({0,1});
+
+	while(!pq.empty()){
+		ll u=pq.top().second;
+		// max_dist=max(max_dist, pq.top().first);
+		pq.pop();
+		for (auto e:g[u]){
+			ll v=e.first;
+			ll w=e.second;
+			if (dist[v]>dist[u]+w){
+				dist[v]=dist[u]+w;
+				previous[v]={u,w};
+				pq.push({dist[v],v});
+			}
+		}
+	}
+}
+
 int main()
 {
 	kush_gupta();
@@ -34,39 +61,24 @@ int main()
 		auto __start = chrono::high_resolution_clock::now(); 
 	#endif
 
-	w(t){
-		ll n=0, m=0;
-		cin>>n>>m;
-		unordered_map <ll,bool> ump;
-		loop(i,0,m){
-			ll temp=0;
-			cin>>temp;
-			ump[temp]=1;
-		}
-		ll res=0;
-		for (ll i=1;i<n;i++){
-			if (i%n==0){
-				continue;
-			}
-			ll temp=i;
-			ll temp_n=n;
-			while(temp<=1e9+1){
-				if (ump[temp]){
-					n--;
-					res++;
-					break;
-				}
-				else{
-					temp+=temp_n;
-				}
-				if (res==n){
-					break;
-				}
-			}
-		}
-		cout<<res<<endl;
+	cin>>n>>m;
+	g.resize(n+1);
+	dist.resize(n+1, INF);
+	previous.resize(n+1, {-1,-1});
+	loop(i,0,m){
+		ll a=0,b=0,c=0;
+		cin>>a>>b>>c;
+		g[a].push_back({b,c});
 	}
-
+	solve();
+	ll curr=n;
+	while(previous[curr].first!=-1){
+		max_dist=max(max_dist, previous[curr].second);
+		// cout<<curr<<" ";
+		curr=previous[curr].first;
+	}
+	// cout<<max_dist<<endl;
+	cout<<(dist[n]-max_dist)+max_dist/2;
 	#ifndef ONLINE_JUDGE
 		auto __end = chrono::high_resolution_clock::now(); 
 		double __time_taken=chrono::duration_cast<chrono::nanoseconds>(__end - __start).count(); 
