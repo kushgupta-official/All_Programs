@@ -17,6 +17,7 @@ using namespace std;
 # define fi first
 # define se second
 # define INF 1e17
+
 void kush_gupta(){
   ios::sync_with_stdio(0);
   cin.tie(0);
@@ -27,28 +28,54 @@ void kush_gupta(){
   #endif
 }
 
-ll n=0,m=0;
+ll n=0, m=0;
 vector <vector <pair <ll,ll> > > g;
 vector <ll> dist;
-ll max_dist=INT_MIN;
-vector <pair <ll,ll> > previous;
+vector <ll> coupon_dist;
 
-void solve(){
+void dijkstra(){
 	dist[1]=0;
-	priority_queue <pair <ll,ll>, vector <pair <ll,ll> >, greater <pair <ll,ll> > > pq;
-	pq.push({0,1});
+	coupon_dist[1]=0;
+
+	priority_queue <pair <ll, pair <ll,ll> >,
+					vector <pair <ll, pair <ll,ll> > >,
+					greater <pair <ll, pair <ll,ll> > > > pq;
+
+	pq.push({0, {1, 0}});
 
 	while(!pq.empty()){
-		ll u=pq.top().second;
-		// max_dist=max(max_dist, pq.top().first);
+		ll u=pq.top().second.first;
+		ll w=pq.top().first;
+		ll flag=pq.top().second.second;
 		pq.pop();
+
+		if(flag == 0)
+		{
+			if(dist[u] < w) continue; 
+		}
+ 
+		if(flag == 1)
+		{
+			if(coupon_dist[u] < w) continue; 
+		}
 		for (auto e:g[u]){
 			ll v=e.first;
-			ll w=e.second;
-			if (dist[v]>dist[u]+w){
-				dist[v]=dist[u]+w;
-				previous[v]={u,w};
-				pq.push({dist[v],v});
+			ll c=e.second;
+			if (flag==0){
+				if (dist[v]>c+w){
+					dist[v]=c+w;
+					pq.push({dist[v], {v, 0}});
+				}
+				if (coupon_dist[v]>(c/2)+w){
+					coupon_dist[v]=(c/2)+w;
+					pq.push({coupon_dist[v], {v, 1}});
+				}
+			}
+			else{
+				if (coupon_dist[v]>c+w){
+					coupon_dist[v]=c+w;
+					pq.push({coupon_dist[v], {v, 1}});
+				}
 			}
 		}
 	}
@@ -62,23 +89,22 @@ int main()
 	#endif
 
 	cin>>n>>m;
+
 	g.resize(n+1);
+
 	dist.resize(n+1, INF);
-	previous.resize(n+1, {-1,-1});
+	coupon_dist.resize(n+1,INF);
+
 	loop(i,0,m){
 		ll a=0,b=0,c=0;
 		cin>>a>>b>>c;
 		g[a].push_back({b,c});
 	}
-	solve();
-	ll curr=n;
-	while(previous[curr].first!=-1){
-		max_dist=max(max_dist, previous[curr].second);
-		// cout<<curr<<" ";
-		curr=previous[curr].first;
-	}
-	// cout<<max_dist<<endl;
-	cout<<(dist[n]-max_dist)+max_dist/2;
+
+	dijkstra();
+
+	cout<<coupon_dist[n]<<endl;
+
 	#ifndef ONLINE_JUDGE
 		auto __end = chrono::high_resolution_clock::now(); 
 		double __time_taken=chrono::duration_cast<chrono::nanoseconds>(__end - __start).count(); 
