@@ -1,2 +1,3 @@
-IMPOSSIBLE
-Time Taken : 0.000313 sec
+0
+0
+1
