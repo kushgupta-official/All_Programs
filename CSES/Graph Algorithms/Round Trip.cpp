@@ -26,72 +26,87 @@ void kush_gupta(){
   	freopen("output.txt", "w", stdout) ;
   #endif
 }
-vector <ll> result;
-bool flag=1;
 
-void dfs(vvl &v, ll n, vector <bool> &visited, ll i, ll parent){
-	if (!flag){
-		return;
-	}
-	visited[i]=true;
-	// cout<<i<<" ";
-	result.push_back(i);
-	for (auto j:v[i]){
-		if (!visited[j]){
-			dfs(v,n,visited,j,i);
-			// cout<<" hi ";
-			if (!flag){
-				return;
-			}
+ll n, m;
+vector <vector <ll> > g;
+vector <bool> visited;
+vector <ll> previous;
+ll y,z;
+
+bool cyclePresent(ll x, ll parent){
+	visited[x]=true;
+	previous[x]=parent;
+	for (auto e:g[x]){
+		if (!visited[e]){
+			if (cyclePresent(e, x))
+				return true;
 		}
-		else if (j!=parent){
-			// cout<<j<<endl;
-			flag=0;
-			result.push_back(j);
-			return;
+		else if (e!=parent){
+			y=e;
+			z=x;
+			return true;
 		}
 	}
-	return;	
+
+	return false;
 }
 
-void solve(vvl &v, ll n){
-	vector <bool> visited(n+1,false);
-	vector <ll> res;
-	for (ll i=1;i<=n;i++){
+bool visitAll(){
+	loop(i,1,n+1){
 		if (!visited[i]){
-			dfs(v, n, visited, i, -1);
-			if (!flag){
-				res.push_back(result.back());
-				ll j=0;
-				for (j=result.size()-2;result[j]!=res[0];j--){
-					res.push_back(result[j]);
-				}
-				res.push_back(result[j]);
-				cout<<res.size()<<endl;
-				for (j=0;j<res.size();j++){
-					cout<<res[j]<<" ";
-				}
-				// cout<<res[0];
-				return;
+			if (cyclePresent(i,0)){
+				return true;
 			}
 		}
 	}
-	cout<<"IMPOSSIBLE";
-	return;
+	return false;
 }
 
 int main()
 {
 	kush_gupta();
-	ll n=0,m=0;
+	#ifndef ONLINE_JUDGE
+		auto __start = chrono::high_resolution_clock::now(); 
+	#endif
+
 	cin>>n>>m;
-	vvl v(n+1);
-	for (ll i=1;i<=m;i++){
-		ll a=0,b=0;
+
+	g.resize(n+1);
+	visited.resize(n+1, false);
+	previous.resize(n+1);
+
+	loop(i,0,m){
+		ll a=0, b=0;
 		cin>>a>>b;
-		v[a].push_back(b);
-		v[b].push_back(a);
+		g[a].push_back(b);
+		g[b].push_back(a);
 	}
-	solve(v, n);
+
+	vector <ll> result;
+
+	if (visitAll()){
+		result.push_back(y);
+		for (ll i=z;;i=previous[i]){
+			result.push_back(i);
+			if (i==y and result.size()>1){
+				break;
+			}
+		}
+		cout<<result.size()<<endl;
+		for (auto i:result){
+			cout<<i<<" ";
+		}
+	}
+	else{
+		cout<<"IMPOSSIBLE";
+	}
+
+	#ifndef ONLINE_JUDGE
+		auto __end = chrono::high_resolution_clock::now(); 
+		double __time_taken=chrono::duration_cast<chrono::nanoseconds>(__end - __start).count(); 
+		__time_taken *= 1e-9; 
+		cout<<"\nTime Taken : "<<fixed<< __time_taken << setprecision(9); 
+		cout << " sec" << endl;
+	#endif
 	return 0;
 }
