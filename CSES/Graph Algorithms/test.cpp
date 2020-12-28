@@ -35,19 +35,33 @@ int main()
     #endif
 
     w(t){
-        ll n=0, k=0;
-        cin>>n>>k;
-        vll v(n);
-        ll sum=0;
-        loop(i,0,n){
-            cin>>v[i];
-            sum+=v[i];
+        ll n=0;
+        cin>>n;
+        string s, p;
+        cin>>s>>p;
+        ll zeroes=0, ones=0;
+        for (char ch:s){
+            if (ch=='0'){
+                zeroes++;
+            }
+            else{
+                ones++;
+            }
         }
-        if (sum%k==0){
-            cout<<0<<endl;
+
+        for (char ch:p){
+            if (ch=='0'){
+                zeroes--;
+            }
+            else{
+                ones--;
+            }
+        }
+        if (zeroes==0 and ones==0){
+            cout<<"Yes\n";
         }
         else{
-            cout<<1<<endl;
+            cout<<"No\n";
         }
     }
 
