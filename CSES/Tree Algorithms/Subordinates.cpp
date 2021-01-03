@@ -60,7 +60,6 @@ int main()
 		tree[i].push_back(x);
 		tree[x].push_back(i);
 	}
-
 	solve(1,0);
 
 	loop(i,1,n+1){
