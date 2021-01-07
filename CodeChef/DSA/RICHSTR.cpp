@@ -46,19 +46,11 @@ int main()
 			if (s[i]==s[i+1] || s[i]==s[i+2] || s[i+1]==s[i+2]){
 				subs[i]=1;
 			}
-		} 
-		// if (s.size()%3!=0){
-		// 	ll i=s.size()-3;
-		// 	if (s[i]==s[i+1] || s[i]==s[i+2] || s[i+1]==s[i+2]){
-		// 		subs[i]=1;
-		// 	}
-		// }
+		}
 		check[0]=subs[0];
 		loop(i,1,n){
 			check[i]=check[i-1]+subs[i];
-			// cout<<check[i]<<" ";
 		}
-		// cout<<endl;
 		while(q--){
 			ll x=0, y=0;
 			cin>>x>>y;
@@ -68,22 +60,13 @@ int main()
 			else{
 				bool flag=0;
 				x--;y--;
-				// for (ll i=x;i<=y-2;i++){
-				// 	if (subs[i]==1){
-				// 		cout<<"YES\n";
-				// 		flag=1;
-				// 		break;
-				// 	}
-				// }
+				
 				if (check[y-2]-(x-1>=0?check[x-1]:0)){
 					cout<<"YES\n";
 				}
 				else{
 					cout<<"NO\n";
 				}
-				// if (!flag){
-				// 	cout<<"NO\n";
-				// }
 			}
 		}
 	}	
