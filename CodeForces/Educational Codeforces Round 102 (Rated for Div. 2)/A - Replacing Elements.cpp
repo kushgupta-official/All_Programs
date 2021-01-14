@@ -27,36 +27,6 @@ void kush_gupta(){
   #endif
 }
 
-ll n,m;
-vector <vector <pair <ll,ll> > > g;
-vector <ll> dist;
-ll max=INT_MIN;
-ll min=1e17;
-vector <ll> parent;
-
-void dijkstra(){
-	dist[1]=0;
-	priority_queue <pair <ll,ll>, 
-					vector <pair <ll,ll> >, 
-					greater <pair <ll,ll> > > pq;
-	pq.push({0,1});
-	while(!pq.empty()){
-		ll u=pq.top().second;
-		ll w=pq.top().first;
-		pq.pop();
-
-		for (auto e:g[u]){
-			ll v=e.first;
-			ll d=e.second;
-			if (dist[v]>d+w){
-				dist[v]=d+w;
-				pq.push({dist[v],v});
-				parent[v]=u;
-			}
-		}
-	}
-}
-
 int main()
 {
 	kush_gupta();
@@ -64,28 +34,31 @@ int main()
 		auto __start = chrono::high_resolution_clock::now(); 
 	#endif
 
-	cin>>n>>m;
-
-	g.resize(n+1);
-	dist.resize(n+1, 1e17);
-	parent.resize(n+1);
-
-	loop(i,0,m){
-		ll u,v,w;
-		cin>>u>>v>>w;
-		g[u].push_back({v,w});
-		g[v].push_back({u,w});
-	}
-
-	dijkstra();
-
-	vector <ll> visited(n+1,0);
-
-	for (ll i=1;i<=n;i++){
-		if (!visited[i]){
-			ll max=INT_MIN, min=1e17;
-			visited[i]=1;
-			
+	w(t){
+		ll n=0,d=0;
+		cin>>n>>d;
+		vll v(n);
+		bool flag=1;
+		loop(i,0,n){
+			cin>>v[i];
+			if (v[i]>d){
+				flag=0;
+			}
+		}
+		if (!flag && n<=2){
+			cout<<"NO\n";
+		}
+		else if (!flag){
+			sort(v.begin(), v.end());
+			if (v[0]+v[1] <= d){
+				cout<<"YES\n";
+			}
+			else{
+				cout<<"NO\n";
+			}
+		}
+		else{
+			cout<<"YES\n";
 		}
 	}
 
