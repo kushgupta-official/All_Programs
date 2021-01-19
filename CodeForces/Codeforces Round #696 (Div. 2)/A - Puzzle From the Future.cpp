@@ -34,38 +34,36 @@ int main()
 		auto __start = chrono::high_resolution_clock::now(); 
 	#endif
 
-	vector <ll> prime (20001,1);
-	vector <ll> first_prime(20001,0);
-	for (ll i=2;i<=20000;i++){
-		if (prime[i]==1){
-			first_prime[i]=i;
-			for (ll j=i+i;j<=20000;j+=i){
-				if (prime[j]==1){
-					first_prime[j]=i;
+	w(t){
+		ll n=0;
+		cin>>n;
+		string b;
+		cin>>b;
+		string a;
+		// string c;
+		a.push_back('1');
+		// c.push_back(a[0]+b[0]-'0');
+		// cout<<c<<endl;
+		for (ll i=1;i<b.length();i++){
+			char ch=a[i-1]+b[i-1]-'0';
+			if (b[i]=='0'){
+				if (ch=='0' || ch=='2'){
+					a.push_back('1');
 				}
-				prime[j]++;
+				else{
+					a.push_back('0');
+				}
+			}
+			else if (b[i]=='1'){
+				if (ch=='0' || ch=='1'){
+					a.push_back('1');
+				}
+				else{
+					a.push_back('0');
+				}
 			}
 		}
-	}
-	vector <ll> res;
-	for (ll i=1;i<=10000;i++){
-		if (prime[i]>=3 && first_prime[i]-1>=i){
-			res.push_back(i);
-		}
-		else{
-			res.push_back(-1);
-		}
-	}
-
-	w(t){
-		ll d=0;
-		cin>>d;
-		if (res[d]==-1){
-			cout<<"NO\n";
-		}
-		else{
-			cout<<"YES\n";
-		}
+		cout<<a<<endl;
 	}
 
 	#ifndef ONLINE_JUDGE
