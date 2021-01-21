@@ -1,4 +1,4 @@
-NO
-NO
+6
+15
 
-Time Taken : 0.003047 sec
+Time Taken : 0.000000 sec
