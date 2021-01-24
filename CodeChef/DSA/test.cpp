@@ -35,37 +35,69 @@ int main()
 	#endif
 
 	w(t){
-		ll d=0;
-		cin>>d;
-		ll a=0,b=0;
-		for (ll i=d+1;;i++){
-			ll t=1;
-			for (ll j=2;j*j<=i;j++){
-				if (i%j==0){
-					t=0;
-					break;
+		ll n=0,m=0;
+		cin>>n>>m;
+		vvl matrix(n+2,vector <ll> (m+2));
+		char ch;
+		for (ll i=1;i<=n;i++){
+			for (ll j=1;j<=m;j++){
+				cin>>ch;
+				if (ch=='.'){
+					matrix[i][j]=0;
+				}
+				else{
+					matrix[i][j]=1;
 				}
 			}
-			if (t){
-				a=i;
-				break;
+		}
+		// if i*j%2==0 than if !matrix[i][j]==1 op++
+		ll operations=0;
+		if ( (n*m) % 2!=0){
+			if (matrix[1][1]==0){
+				operations++;
+				matrix[1][1]=1;
 			}
 		}
-
-		for (ll i=a+d;;i++){
-			ll t=1;
-			for (ll j=2;j*j<=i;j++){
-				if (i%j==0){
-					t=0;
-					break;
+		for (ll i=1;i<=n;i++){
+			for (ll j=1;j<=m;j++){
+				// if (i>0 && !matrix[i-1][j]){
+				// 	// mark(matrix,visited,n,m,i-1,j);
+				// }
+				// if (j>0 && !matrix[i][j-1]){
+				// 	// mark(matrix,visited,n,m,i,j-1);
+				// }
+				if (!matrix[i][j]
+					&& !matrix[i-1][j] 
+					&& !matrix[i+1][j] 
+					&& !matrix[i][j-1] 
+					&& !matrix[i][j+1])
+				{
+					matrix[i][j]=1;
+					operations++;
+				}
+				else{
+					if (matrix[i][j] && i<n && matrix[i+1][j]){
+						matrix[i+1][j]=0;
+						operations++;
+						j++;
+						if (j>m){
+							i++;
+						}
+						// mark(matrix,visited,n,m,i+1,j);
+					}
+					if (matrix[i][j] && j<m && matrix[i][j+1]){
+						matrix[i][j+1]=1;
+						operations++;
+						j++;
+						if (j>m){
+							i++;
+						}
+						// mark(matrix,visited,n,m,i,j+1);
+					}
 				}
 			}
-			if (t==1){
-				b=i;
-				break;
-			}
 		}
-		cout<<a*b<<endl;
+		cout<<operations<<endl;
 	}
 
 	#ifndef ONLINE_JUDGE
@@ -77,3 +109,9 @@ int main()
 	#endif
 	return 0;
 }
+
+// * . . *
+// * . * .
+
+// . * . *
+// * . * .
