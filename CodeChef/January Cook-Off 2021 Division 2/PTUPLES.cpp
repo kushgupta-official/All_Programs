@@ -34,9 +34,34 @@ int main()
 		auto __start = chrono::high_resolution_clock::now(); 
 	#endif
 
-	int x;
-	cout<<&x<<endl;
-	cout<<&x<<endl;
+	ll limit=1000000;
+	vll prime(limit+1,0);
+
+	for (ll i=2;i*i<=limit;i++){
+		if (!prime[i]){
+			for (ll j=i*i;j<=limit;j+=i){
+				prime[j]=1;
+			}
+		}
+	}
+	ll curr=0;
+	vll res(limit+1,0);
+	for (ll i=2;i<=limit;i++){
+		if (!prime[i] && !prime[i+2]){
+			res[i]=curr;
+			res[i+1]= curr;
+			res[i+2]= ++curr;
+			i+=1;
+		}
+		else{
+			res[i]=curr;
+		}
+	}
+	w(t){
+		ll n=0;
+		cin>>n;
+		cout<<res[n]<<endl;
+	}
 
 	#ifndef ONLINE_JUDGE
 		auto __end = chrono::high_resolution_clock::now(); 
