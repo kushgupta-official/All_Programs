@@ -34,26 +34,28 @@ int main()
 		auto __start = chrono::high_resolution_clock::now(); 
 	#endif
 
-	w(t){
-		ll n=0,k=0;
-		cin>>n>>k;
-		while(k%2==0){
-			k/=2;
-		}
-		ll temp=0;
-		bool flag=1;
-		for (ll i=0;i<n;i++){
-			cin>>temp;
-			if (temp%k!=0){
-				flag=0;
-			}
-		}
-		if (flag){
-			cout<<"YES\n";
+	vll pie(12);
+	pie[0]=0;
+	ll k=0,j=0;
+	string s1="ababbabbab";
+	loop(i,1,10){
+		if (s1[i]==s1[j]){
+			k++;
+			j++;
+			pie[i]=k;
 		}
 		else{
-			cout<<"NO\n";
+			k=0;
+			j=0;
+			if (s1[i]==s1[j]){
+				k++;
+				j++;
+				pie[i]=k;
+			}
 		}
+	}
+	loop(i,0,11){
+		cout<<pie[i]<<" ";
 	}
 
 	#ifndef ONLINE_JUDGE
