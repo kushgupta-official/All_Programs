@@ -36,21 +36,19 @@ int main()
 
 	ll n=0;
 	cin>>n;
-	vector <ll> v(n);
+	vll v(n);
+	vll hash(n+1);
 	loop(i,0,n){
 		cin>>v[i];
-	}	
-	sort(v.begin(), v.end());
+		hash[v[i]]=i;
+	}
 	ll res=1;
-	loop(i,0,n){
-		if (v[i]>res){
-			break;
-		}
-		else{	
-			res+=v[i];
+	loop(i,2,n+1){
+		if (hash[i-1]>hash[i]){
+			res++;
 		}
 	}
-	cout<<res<<endl;
+	cout<<res;
 
 	#ifndef ONLINE_JUDGE
 		auto __end = chrono::high_resolution_clock::now(); 

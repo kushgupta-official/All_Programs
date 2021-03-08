@@ -1,3 +1,2 @@
-6
-
+3
 Time Taken : 0.000000 sec
