@@ -1,9 +1,7 @@
-YES
-NO
-YES
-NO
-YES
-NO
-NO
+4
+4
+3
+5
+3
 
-Time Taken : 0.000999 sec
+Time Taken : 0.001048 sec
