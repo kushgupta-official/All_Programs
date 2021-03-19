@@ -24,22 +24,34 @@ using namespace __gnu_pbds;
 template<class T> using oset =tree<T, null_type, less<T>, rb_tree_tag,tree_order_statistics_node_update> ;
 
 void kush_gupta_solves(){
-	w(t){
-		ll n,u,r,d,l;
-		cin>>n>>u>>r>>d>>l;
-		ll ru=0,rr=0,rd=0,rl=0;
-		if (u==n) rl++,rr++;
-		if (r==n) rd++,ru++;
-		if (d==n) rr++,rl++;
-		if (l==n) ru++,rd++;
-
-		if (u==n-1) (rl<l)? rl++ : rr++;
-		if (r==n-1) (rd<d)? rd++ : ru++;
-		if (d==n-1) (rr<r)? rr++ : rl++;
-		if (l==n-1) (ru<u)? ru++ : rd++;
-
-		(u>=ru and d>=rd and l>=rl and r>=rr) ? cout<<"YES\n":
-												cout<<"NO\n";
+	ll n=0,q=0;
+	cin>>n>>q;
+	vll v(n+1);
+	ll c1=0,c0=0;
+	loop(i,1,n+1){
+		cin>>v[i];
+		v[i]==1 ? c1++:c0++;
+	}
+	// cout<<c1<<" "<<c0;
+	while(q--){
+		ll t=0;
+		cin>>t;
+		if (t==1){
+			ll x=0;
+			cin>>x;
+			v[x]=1-v[x];
+			v[x]==1 ? (c1++,c0--) : (c0++,c1--);
+		}
+		else{
+			ll k=0;
+			cin>>k;
+			if (k<=c1){
+				cout<<1<<endl;
+			}
+			else{
+				cout<<0<<endl;
+			}
+		}
 	}
 }
 
