@@ -16,7 +16,7 @@ using namespace __gnu_pbds;
 # define pp pair <pair <ll,ll>,ll>
 # define pb(x) push_back(x)
 # define w(x) ll x=0; cin>>x; while(x--)
-# define endl '\n'
+// # define endl '\n'
 # define mid(l,r) l+(r-l)/2
 # define fi first
 # define se second
@@ -24,41 +24,15 @@ using namespace __gnu_pbds;
 template<class T> using oset =tree<T, null_type, less<T>, rb_tree_tag,tree_order_statistics_node_update> ;
 
 void kush_gupta_solves(){
+	ll guess;
 	w(t){
-		ll n=0,m=0,k=0;
-		cin>>n>>m>>k;
-		ll res=0,x=n;
-		if (n%2==1){
-			x=n-1;
-		}
-		for (ll i=1;i<=x;i++){
-			if (i%2){
-				res^=1+i+k;
-			}
-			else{
-				res^=m+i+k;
+		for (ll i=2;i*i<1000001;i++){
+			cout<<i*i<<endl;
+			cin>>guess;
+			if (guess==1){
+				break;
 			}
 		}
-		if (n%2){
-			for (ll j=1;j<=m;j++){
-				res^=n+j+k;
-			}
-		}
-		cout<<res<<endl;
-		// if (n==1){
-		// 	for (ll j=1;j<=m;j++){
-		// 		res=res^(1+j+k);
-		// 	}
-		// }
-		// else if (m==1){
-		// 	for (ll i=1;i<=n;i++){
-		// 		res=res^(i+1+k);
-		// 	}
-		// }
-		// else{
-		// 	res=(1+1+k)^(n+m+k);
-		// }
-		// cout<<res<<endl;
 	}
 }
 
@@ -70,9 +44,9 @@ int main()
   		freopen("output.txt", "w", stdout) ;
 	#endif
 
-	ios::sync_with_stdio(0);
-    cin.tie(0);
-    cout.tie(0);
+	// ios::sync_with_stdio(0);
+ //    cin.tie(0);
+ //    cout.tie(0);
 
 	kush_gupta_solves();
 

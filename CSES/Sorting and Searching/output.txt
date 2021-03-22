@@ -1,5 +1,5 @@
-7
-3
-3
+14
+5
+14629120
 
-Time Taken : 0.001041 sec
+Time Taken : 0.023433 sec

@@ -25,40 +25,13 @@ template<class T> using oset =tree<T, null_type, less<T>, rb_tree_tag,tree_order
 
 void kush_gupta_solves(){
 	w(t){
-		ll n=0,m=0,k=0;
-		cin>>n>>m>>k;
-		ll res=0,x=n;
-		if (n%2==1){
-			x=n-1;
+		ll n=0,k=0;
+		cin>>n>>k;
+		vll v(n);
+		loop(i,0,n){
+			cin>>v[i];
 		}
-		for (ll i=1;i<=x;i++){
-			if (i%2){
-				res^=1+i+k;
-			}
-			else{
-				res^=m+i+k;
-			}
-		}
-		if (n%2){
-			for (ll j=1;j<=m;j++){
-				res^=n+j+k;
-			}
-		}
-		cout<<res<<endl;
-		// if (n==1){
-		// 	for (ll j=1;j<=m;j++){
-		// 		res=res^(1+j+k);
-		// 	}
-		// }
-		// else if (m==1){
-		// 	for (ll i=1;i<=n;i++){
-		// 		res=res^(i+1+k);
-		// 	}
-		// }
-		// else{
-		// 	res=(1+1+k)^(n+m+k);
-		// }
-		// cout<<res<<endl;
+		
 	}
 }
 
