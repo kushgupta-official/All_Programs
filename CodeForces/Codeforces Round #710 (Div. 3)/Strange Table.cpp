@@ -25,48 +25,18 @@ template<class T> using oset =tree<T, null_type, less<T>, rb_tree_tag,tree_order
 
 void kush_gupta_solves(){
 	w(t){
-		ll n=0,k=0;
-		cin>>n>>k;
-		string s;
-		cin>>s;
-		ll count=0,fp=-1,lp=-1;
-		for (ll i=0;i<s.length();i++){
-			if (s[i]=='*'){
-				count++;
-				s[i]='X';
-				fp=i;
-				break;
-			}
-		}
-		for (ll i=s.length()-1;i>=0;i--){
-			if (s[i]=='*'){
-				count++;
-				s[i]='X';
-				lp=i;
-				break;
-			}
-		}
-		// cout<<fp<<" "<<lp;
-		if (lp-fp<=k){
-			cout<<count<<endl;
+		ll n=0,m=0,x=0,column=0,row=0;
+		cin>>n>>m>>x;
+		if (x%n==0){
+			column=x/n;
+			row=n;
 		}
 		else{
-			ll lastStar=-1,dist=0;
-			for (ll i=fp+1;i<=lp;i++){
-				dist++;
-				if (s[i]=='*' and dist<=k){
-					lastStar=i;
-				}
-				if (dist>k){
-					s[lastStar]='X';
-					i=lastStar;
-					dist=0;
-					count++;
-				}
-			}
-			cout<<count<<endl;
-			// cout<<count<<" "<<s<<endl;
+			column=(x/n)+1;
+			row=x%n;
 		}
+		ll res=(row-1)*m+column;
+		cout<<res<<endl;
 	}
 }
 
