@@ -49,7 +49,6 @@ void kush_gupta_solves(){
 			if (p1.first) pq.push(p1);
 			if (p2.first) pq.push(p2);
 		}
-		// cout<<pq.top().first<<endl;
 		cout<<res<<endl;
 	}
 }
