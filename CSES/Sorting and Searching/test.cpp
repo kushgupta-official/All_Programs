@@ -24,34 +24,7 @@ using namespace __gnu_pbds;
 template<class T> using oset =tree<T, null_type, less<T>, rb_tree_tag,tree_order_statistics_node_update> ;
 
 void kush_gupta_solves(){
-	w(t){
-		ll n=0;
-		cin>>n;
-		vll v(n);
-		map <ll,ll> mp;
-		loop(i,0,n){
-			cin>>v[i];
-			mp[v[i]]++;
-		}
-		priority_queue <pair <ll,ll> > pq;
-		for (auto ite:mp){
-			pq.push({ite.second,ite.first});
-		}
-		ll res=n;
-		while (pq.size()>1){
-			pair <ll,ll> p1=pq.top();
-			pq.pop();
-			pair <ll,ll> p2=pq.top();
-			pq.pop();
-			p1.first--;
-			p2.first--;
-			res-=2;
-			if (p1.first) pq.push(p1);
-			if (p2.first) pq.push(p2);
-		}
-		// cout<<pq.top().first<<endl;
-		cout<<res<<endl;
-	}
+	cout<<"NO";
 }
 
 int main()
