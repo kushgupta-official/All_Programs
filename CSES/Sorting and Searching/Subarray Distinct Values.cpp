@@ -24,55 +24,40 @@ using namespace __gnu_pbds;
 template<class T> using oset =tree<T, null_type, less<T>, rb_tree_tag,tree_order_statistics_node_update> ;
 
 void kush_gupta_solves(){
-	w(t){
-		ll n=0;
-		cin>>n;
-		string s;
-		cin>>s;
-		string a,b;
-		if (s[0]=='0' or s[n-1]=='0'){
-			cout<<"NO\n";
-			continue;
+	ll n=0,k=0;
+	cin>>n>>k;
+	vll v(n);
+	loop(i,0,n){
+		cin>>v[i];
+	}
+	ll l=0,r=0;
+	map <ll,ll> mp;
+	ll count_distinct=0;
+	ll res=0;
+	while(l<=r){
+		if(!mp[v[r]]){
+			count_distinct++;
+			mp[v[r]]++;
 		}
-		vll ones,zeroes;
-		loop(i,1,n-1){
-			if (s[i]=='1')
-				ones.push_back(i);
-			else
-				zeroes.push_back(i);
+		if (count_distinct<=k){
+			res++;
+			// cout<<l+1<<' '<<r+1<<endl;
+			// res+=r-l+1;
+			r==n-1?l++:r++;
 		}
-		if (ones.size()%2 or zeroes.size()%2){
-			cout<<"NO\n";
-			continue;
-		}
-		a=s;
-		b=s;
-		a[0]='('; a[n-1]=')';
-		b[0]='('; b[n-1]=')';
-		bool alter=0;
-		loop(i,0,zeroes.size()){
-			if (alter==0){
-				a[zeroes[i]]='(' ;
-				b[zeroes[i]]=')' ;
+		else{
+			mp[v[l]]--;
+			if (mp[v[l]]==0){
+				count_distinct--;
 			}
-			else{
-			   b[zeroes[i]]='(' ;
-			   a[zeroes[i]]=')' ;
-			}
-			alter=!alter;
+			l++;
 		}
-		loop(i,0,ones.size()/2){
-			a[ones[i]]='(';
-			b[ones[i]]='(';
-		}
-		loop(i,ones.size()/2,ones.size()){
-			a[ones[i]]=')';
-			b[ones[i]]=')';
-		}
-		cout<<"YES\n";
-		cout<<a<<endl;
-		cout<<b<<endl;
-		
+	}
+	if (k==1){
+		cout<<res;
+	}
+	else{
+		cout<<res+n-2;
 	}
 }
 
