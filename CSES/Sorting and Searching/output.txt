@@ -1,4 +1,6 @@
-4
-3
+2 3 7 
+-1
+2 2 2 3 9 
+1 2 6 
 
-Time Taken : 0.004240 sec
+Time Taken : 0.000999 sec

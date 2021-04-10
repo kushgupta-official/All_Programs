@@ -27,36 +27,18 @@ void kush_gupta_solves(){
 	w(t){
 		ll n=0;
 		cin>>n;
-		vll b(n+3,-1),sum(n+3,0);
-		ll s=0;
-		loop(i,1,n+3){
-			cin>>b[i];
+		vll v(n);
+		loop(i,0,n){
+			cin>>v[i];
 		}
-		sort(b.begin(), b.end());
-		loop(i,1,n+3){
-			s+=b[i];
-			sum[i]=s;
-		}
-		ll x=sum[n+1]-b[n+2];
-		if (x>0 and binary_search(b.begin(), b.end()-1, x) ){
-			
-			for (ll i=1;i<=n+1;i++){
-				if (b[i]==x){
-					x=-1;
-					continue;
-				}
-				cout<<b[i]<<" ";
+		vll a=v;
+		sort(v.begin(), v.end());
+		for (ll i=0;i<n;i++){
+			if (a[i]!=v[1]){
+				cout<<i+1<<endl;
+				break;
 			}
 		}
-		else if (sum[n]==b[n+1]){
-			for (ll i=1;i<=n;i++){
-				cout<<b[i]<<" ";
-			}
-		}
-		else{
-			cout<<-1;
-		}
-		cout<<endl;
 	}
 }
 
