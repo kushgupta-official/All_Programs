@@ -31,8 +31,6 @@ void kush_gupta_solves(){
 		loop(i,1,n+1){
 			cin>>v[i];
 		}
-		// vector <ll> check1(n+1,false);
-		// vector <ll> check2(n+1,false);
 		set <ll> s1;
 		set <ll> s2;
 		loop(i,1,n+1){
@@ -49,31 +47,19 @@ void kush_gupta_solves(){
 				min_perm[i]=v[i];
 				max_perm[i]=v[i];
 				max=v[i];
-				// check1[v[i]]=1;
-				// check2[v[i]]=1;
 				s1.erase(v[i]);
 				s2.erase(v[i]);
 				j=max-1;
 			}
 			else{
-				// while(check1[k]){
-				// 	k++;
-				// }
 				k=*s1.begin();
 				min_perm[i]=k;
 				s1.erase(s1.begin());
-				// check1[k]=1;
-				// k++;
-				// while(check2[j]){
-				// 	j--;
-				// }
 				auto ite=s2.lower_bound(max);
 				ite--;
 				j=*ite;
 				max_perm[i]=j;
 				s2.erase(j);
-				// check2[j]=1;
-				// j--;
 			}
 		}
 		loop(i,1,n+1){
