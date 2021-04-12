@@ -1,3 +1,8 @@
-6
+Cat B
+Cat B
+Cat B
+Mouse C
+Mouse C
+Mouse C
 
-Time Taken : 0.002791 sec
+Time Taken : 0.000998 sec
