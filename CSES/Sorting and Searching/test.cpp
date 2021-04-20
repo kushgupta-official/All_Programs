@@ -23,62 +23,19 @@ using namespace __gnu_pbds;
 
 template<class T> using oset =tree<T, null_type, less<T>, rb_tree_tag,tree_order_statistics_node_update> ;
 
-void build(vll &v, vll &tree, ll tidx, ll l, ll r){
-	if (l==r){
-		tree[tidx]=v[l];
-		return;
-	}
-	ll m=mid(l,r);
-	build(v,tree,tidx*2+1,l,m);
-	build(v,tree,tidx*2+2,m+1,r);
-	tree[tidx]=tree[tidx*2+1] | tree[tidx*2+2];
-}
-
-ll query(vll &tree, ll tidx, ll s, ll e, ll l, ll r){
-	//outside
-	if (s>r or e<l){
-		return 0;
-	}
-	//fully inside
-	if (s<=l and e>=r){
-		return tree[tidx];
-	}
-	ll m=mid(l,r);
-	return query(tree,tidx*2+1,s,e,l,m) | query(tree,tidx*2+2,s,e,m+1,r);
-}
-
-void update(vll &tree, ll tidx, ll value, ll index, ll l, ll r){
-	if (l==r){
-		tree[tidx]=value;
-		return;
-	}
-	ll m=mid(l,r);
-	if (m>=index){
-		update(tree,tidx*2+1,value,index,l,m);
-	}
-	else{
-		update(tree,tidx*2+2,value,index,m+1,r);
-	}
-	tree[tidx]=tree[tidx*2+1] | tree[tidx*2+2];
-}
-
 void kush_gupta_solves(){
 	w(t){
-		ll n=0,q=0;
-		cin>>n>>q;
-		vll v(n);
+		ll n=0;
+		cin>>n;
+		ll res=0;
+		ll x=0;
 		loop(i,0,n){
-			cin>>v[i];
+			cin>>x;
+			if (x==1 or x==3){
+				res++;
+			}
 		}
-		vll tree(4*n,0);
-		build(v,tree,0,0,n-1);
-		cout<<query(tree,0,0,n-1,0,n-1)<<endl;
-		ll x=0,a=0;
-		while(q--){
-			cin>>x>>a;
-			update(tree,0,a,x-1,0,n-1);
-			cout<<query(tree,0,0,n-1,0,n-1)<<endl;
-		}
+		cout<<res<<endl;
 	}
 }
 
