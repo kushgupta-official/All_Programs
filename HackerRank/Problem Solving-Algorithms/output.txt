@@ -1,8 +1,2 @@
-7
-7
-7
-7
-7
-7
-
-Time Taken : 0.000566 sec
+1
+Time Taken : 0.000000 sec
