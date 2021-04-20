@@ -56,9 +56,6 @@ void kush_gupta_solves(){
 			ranked.pb(temp);
 		}
 	}
-	// loop(i,0,ranked.size()){
-	// 	cout<<ranked[i]<<" ";
-	// }
 	ll m=0;
 	cin>>m;
 	vll player(m);
