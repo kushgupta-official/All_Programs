@@ -23,64 +23,32 @@ using namespace __gnu_pbds;
 
 template<class T> using oset =tree<T, null_type, less<T>, rb_tree_tag,tree_order_statistics_node_update> ;
 
-bool comp(pair <ll,ll> p1,pair <ll,ll> p2){
-	if (p1.first==p2.first)
-		return p1.second>p2.second;
-	return p1.first<p2.first;
-}
-
 void kush_gupta_solves(){
 	w(t){
-		ll n=0;
-		cin>>n;
-		vp v(n);
-		// map <ll,ll> mp;
-		ll sum=0;
-		loop(i,0,n){
-			cin>>v[i].first;
-			// mp[v[i].fi]++;
-		}
-		loop(i,0,n){
-			cin>>v[i].second;
-			sum+=v[i].second;
-		}
-		sort(v.begin(), v.end(),comp);
-		vvl matrix(n+1);
-		loop(i,0,n){
-			matrix[v[i].fi].push_back(v[i].se);
-		}
-		vvl presum;
-		for (ll i=1;i<=n;i++){
-			vll temp;
-			for (ll j=0;j<matrix[i].size();j++){
-				if (j==0)
-					temp.pb(matrix[i][j]);
-				else
-					temp.pb(matrix[i][j]+temp[j-1]);
-			}
-			if (!temp.empty())
-				presum.pb(temp);
-		}
-		ll k=1;
-		cout<<sum<<" ";
-		loop(i,1,n){
-			k++;
-			sum=0;
-			bool flag=1;
-			if (flag){
-				for (ll i=0;i<presum.size();i++){
-					ll x=presum[i].size()-(presum[i].size()%k)-1;
-					if (x>=0)
-						sum+=presum[i][x];
-				}
-				cout<<sum<<" ";
-				if (sum==0)
-					flag=0;
-			}
+		ll a=0,b=0,d=0;
+		cin>>a>>b>>d;
+		if (d==0){
+			if (a==b)
+				cout<<"YES\n";
 			else
-				cout<<0<<" ";
+				cout<<"NO\n";
 		}
-		cout<<endl;
+		else if (a%b==0 || b%a==0){
+			if ((max(a,b)/min(a,b))-1<=d){
+				cout<<"YES\n";
+			}
+			else{
+				cout<<"NO\n";
+			}
+		}
+		else{
+			if (max(a,b)/min(a,b)<=d){
+				cout<<"YES\n";
+			}
+			else{
+				cout<<"NO\n";
+			}
+		}
 	}
 }
 
