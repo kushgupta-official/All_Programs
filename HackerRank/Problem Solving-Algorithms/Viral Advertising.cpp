@@ -36,11 +36,11 @@ void kush_gupta_solves(){
 
 int main()
 {
-	#ifndef ONLINE_JUDGE
-		auto __start = chrono::high_resolution_clock::now(); 
-		freopen("input.txt", "r", stdin) ;
-  		freopen("output.txt", "w", stdout) ;
-	#endif
+	// #ifndef ONLINE_JUDGE
+	// 	auto __start = chrono::high_resolution_clock::now(); 
+	// 	freopen("input.txt", "r", stdin) ;
+ //  		freopen("output.txt", "w", stdout) ;
+	// #endif
 
 	ios::sync_with_stdio(0);
     cin.tie(0);
@@ -48,13 +48,13 @@ int main()
 
 	kush_gupta_solves();
 
-	#ifndef ONLINE_JUDGE
-		auto __end = chrono::high_resolution_clock::now(); 
-		double __time_taken=chrono::duration_cast<chrono::nanoseconds>(__end - __start).count(); 
-		__time_taken *= 1e-9; 
-		cout<<"\nTime Taken : "<<fixed<< __time_taken << setprecision(9); 
-		cout << " sec" << endl;
-	#endif
+	// #ifndef ONLINE_JUDGE
+	// 	auto __end = chrono::high_resolution_clock::now(); 
+	// 	double __time_taken=chrono::duration_cast<chrono::nanoseconds>(__end - __start).count(); 
+	// 	__time_taken *= 1e-9; 
+	// 	cout<<"\nTime Taken : "<<fixed<< __time_taken << setprecision(9); 
+	// 	cout << " sec" << endl;
+	// #endif
 
 	return 0;
 }
