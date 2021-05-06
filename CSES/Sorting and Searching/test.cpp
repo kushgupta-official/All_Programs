@@ -1,60 +1,34 @@
 # include <bits/stdc++.h>
-# include <ext/pb_ds/assoc_container.hpp> 
-# include <ext/pb_ds/tree_policy.hpp> 
+# define ll long long int
 
 using namespace std;
-using namespace __gnu_pbds; 
 
-# define ll long long
-# define ld long double
-# define loop(i,a,b) for(ll i=a;i<b;i++)
-# define vi vector<int>
-# define vll vector<ll>
-# define vvl vector<vector <ll> >
-# define vp vector <pair <ll,ll> >
-# define vpp vector <pair <pair <ll,ll>,ll> >
-# define pp pair <pair <ll,ll>,ll>
-# define pb(x) push_back(x)
-# define w(x) ll x=0; cin>>x; while(x--)
-# define endl '\n'
-# define mid(l,r) l+(r-l)/2
-# define fi first
-# define se second
-
-template<class T> using oset =tree<T, null_type, less<T>, rb_tree_tag,tree_order_statistics_node_update> ;
-
-void kush_gupta_solves(){
-	ll n=0;
-	cin>>n;
-	ll res=5,s=2;
-	loop(i,2,n+1){
-		res=(res/2)*3;
-		s+=res/2;
-	}
-	cout<<s;
-}
-
-int main()
-{
+int main(){
 	#ifndef ONLINE_JUDGE
-		auto __start = chrono::high_resolution_clock::now(); 
+		// auto __start = chrono::high_resolution_clock::now(); 
 		freopen("input.txt", "r", stdin) ;
   		freopen("output.txt", "w", stdout) ;
 	#endif
-
-	ios::sync_with_stdio(0);
-    cin.tie(0);
-    cout.tie(0);
-
-	kush_gupta_solves();
-
-	#ifndef ONLINE_JUDGE
-		auto __end = chrono::high_resolution_clock::now(); 
-		double __time_taken=chrono::duration_cast<chrono::nanoseconds>(__end - __start).count(); 
-		__time_taken *= 1e-9; 
-		cout<<"\nTime Taken : "<<fixed<< __time_taken << setprecision(9); 
-		cout << " sec" << endl;
-	#endif
-
-	return 0;
+	ll n=0,x=0;
+	cin>>n>>x;
+	vector <pair <ll,ll> > a(n);
+	for (ll i=0;i<n;i++){
+		cin>>a[i].first;
+		a[i].second=i+1;
+	}
+	sort(a.begin(), a.end());
+	ll i=0,j=n-1;
+	while(i<j){
+		if (a[i].first + a[j].first == x){
+			cout<<a[i].second<<" "<<a[j].second<<endl;
+			return 0;
+		}
+		else if (a[i].first + a[j].first < x){
+			i++;
+		}
+		else{
+			j--;
+		}
+	}
+	cout<<"IMPOSSIBLE\n";
 }
