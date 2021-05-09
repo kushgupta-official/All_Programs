@@ -1,3 +1,5 @@
-IMPOSSIBLE
+81
+256
+276067146
 
 Time Taken : 0.000000 sec

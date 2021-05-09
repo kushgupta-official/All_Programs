@@ -1,10 +1,10 @@
 # include <bits/stdc++.h>
 # include <ext/pb_ds/assoc_container.hpp> 
 # include <ext/pb_ds/tree_policy.hpp> 
-
+ 
 using namespace std;
 using namespace __gnu_pbds; 
-
+ 
 # define ll long long
 # define ld long double
 # define loop(i,a,b) for(ll i=a;i<b;i++)
@@ -21,7 +21,7 @@ using namespace __gnu_pbds;
 # define fi first
 # define se second
 # define MOD 1000000007
-
+ 
 ll power(ll a,ll p){
 	if (p==0){
 		return 1;
@@ -39,7 +39,7 @@ ll power(ll a,ll p){
 	}
 	return res;
 }
-
+ 
 template<class T> using oset =tree<T, null_type, less<T>, rb_tree_tag,tree_order_statistics_node_update> ;
 void kush_gupta_solves(){
 	w(t){
@@ -48,7 +48,7 @@ void kush_gupta_solves(){
 		cout<<power(a,b)<<endl;
 	}	
 }
-
+ 
 int main()
 {
 	#ifndef ONLINE_JUDGE
@@ -56,13 +56,13 @@ int main()
 		freopen("input.txt", "r", stdin) ;
   		freopen("output.txt", "w", stdout) ;
 	#endif
-
+ 
 	ios::sync_with_stdio(0);
     cin.tie(0);
     cout.tie(0);
-
+ 
 	kush_gupta_solves();
-
+ 
 	#ifndef ONLINE_JUDGE
 		auto __end = chrono::high_resolution_clock::now(); 
 		double __time_taken=chrono::duration_cast<chrono::nanoseconds>(__end - __start).count(); 
@@ -70,6 +70,6 @@ int main()
 		cout<<"\nTime Taken : "<<fixed<< __time_taken << setprecision(9); 
 		cout << " sec" << endl;
 	#endif
-
+ 
 	return 0;
 }
