@@ -20,21 +20,31 @@ using namespace __gnu_pbds;
 # define mid(l,r) l+(r-l)/2
 # define fi first
 # define se second
-
+# define MOD 1000000007
 template<class T> using oset =tree<T, null_type, less<T>, rb_tree_tag,tree_order_statistics_node_update> ;
+
+ll power(ll x,ll p,ll mod){
+    ll res=1;
+    if(x==0)
+    	return 0;
+    while(p>0){
+        if((p&1)==0){
+            p/=2;
+            x=(x*x)%mod;
+        }
+        else{
+            p--;
+            res=(res*x)%mod;
+        }
+    }
+    return res;
+}
 
 void kush_gupta_solves(){
 	w(t){
-		ll n=0,m=0;
-		cin>>n>>m;
-		map <ll,ll> mp;
-		for (ll i=1;i<=n;i++){
-			mp[m%i]++;
-		}
-		for (auto ite:mp){
-			cout<<ite.first<<" "<<ite.second<<endl;
-		}
-		cout<<endl;
+		ll n=0;
+		cin>>n;
+		cout<<power(2,n-1,MOD)<<endl;
 	}
 }
 

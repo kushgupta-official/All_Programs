@@ -24,20 +24,27 @@ using namespace __gnu_pbds;
 template<class T> using oset =tree<T, null_type, less<T>, rb_tree_tag,tree_order_statistics_node_update> ;
 
 void kush_gupta_solves(){
-	vector <ll> factors(1e6+1,1);
-	for (ll i=2;i<=1e6;i++){
-		factors[i]++;
-		for (ll j=i+i;j<=1e6;j+=i){
-			factors[j]++;
+	w(t){
+		ll n=0,m=0;
+		cin>>n>>m;
+		ll res=0;
+		for (ll a=1;a<n;a++){
+			for (ll b=a+1;b<=n;b++){
+				// if (b%a==0 or b>m)
+				if (((m%a)%b)==((m%b)%a)){
+					cout<<a<<' '<<b<<endl;
+					res++;
+				}
+			}
 		}
-	}
-	w(n){
-		ll x=0;
-		cin>>x;
-		cout<<factors[x]<<endl;
+		cout<<"\nres="<<res<<endl<<endl;;
 	}
 }
-
+// 0 1
+// 2 3
+// 4 2
+// 5 1
+// 6 1
 int main()
 {
 	#ifndef ONLINE_JUDGE
