@@ -27,14 +27,25 @@ void kush_gupta_solves(){
 	w(t){
 		ll n=0,m=0;
 		cin>>n>>m;
-		map <ll,ll> mp;
-		for (ll i=1;i<=n;i++){
-			mp[m%i]++;
+		ll res=0;
+		vll v(n,1);
+		ll tc=0;
+		for (ll i=2;i<=n;i++){
+			ll a=m%i;
+			res+=v[a];
+			tc++;
+			// v[a]++;
+			// v[a]++;
+			for (ll j=a;j<n;j+=i){
+				v[j]++;
+				tc++;
+			}
 		}
-		for (auto ite:mp){
-			cout<<ite.first<<" "<<ite.second<<endl;
+		loop(i,0,n){
+			cout<<v[i]<<" ";
 		}
-		cout<<endl;
+		// cout<<endl<<tc<<endl<<res<<endl;
+		cout<<res<<endl;
 	}
 }
 

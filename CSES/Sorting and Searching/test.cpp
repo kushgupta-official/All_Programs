@@ -25,26 +25,18 @@ template<class T> using oset =tree<T, null_type, less<T>, rb_tree_tag,tree_order
 
 void kush_gupta_solves(){
 	w(t){
-		ll n=0,m=0;
-		cin>>n>>m;
-		ll res=0;
-		for (ll a=1;a<n;a++){
-			for (ll b=a+1;b<=n;b++){
-				// if (b%a==0 or b>m)
-				if (((m%a)%b)==((m%b)%a)){
-					cout<<a<<' '<<b<<endl;
-					res++;
-				}
-			}
+		ll k=0;
+		cin>>k;
+		ll x=k+1;	//for prev
+		ll sum=0;
+		for (ll i=2;i<=(2*k)+1;i++){
+			sum+=__gcd(x,k+i*i);
+			x=k+i*i;
 		}
-		cout<<"\nres="<<res<<endl<<endl;;
+		cout<<sum<<endl;
 	}
 }
-// 0 1
-// 2 3
-// 4 2
-// 5 1
-// 6 1
+
 int main()
 {
 	#ifndef ONLINE_JUDGE
