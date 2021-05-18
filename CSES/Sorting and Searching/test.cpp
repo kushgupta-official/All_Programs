@@ -24,33 +24,38 @@ using namespace __gnu_pbds;
 template<class T> using oset =tree<T, null_type, less<T>, rb_tree_tag,tree_order_statistics_node_update> ;
 
 void kush_gupta_solves(){
-	ll e=1E9;
-	vector <ll> v;
-	for (ll i=1;i*i<=e;i++){
-		v.push_back(i*i);
-	}
-	// for (ll i=1;i<35;i++){
-	// 	cout<<v[i]<<" ";
-	// }
-	// cout<<endl;
-	w(q){
-		ll a=0,b=0,res=0;
-		cin>>a>>b;
-		auto t1=upper_bound(v.begin(), v.end(),b);
-		// cout<<"t1="<<*t1<<endl;
-		auto x=--t1 - v.begin();
-		if (*t1==b){
-			res--;
-		}
-		// cout<<"\nt1="<<*t1<<endl;
-		auto t2=upper_bound(v.begin(), v.end(),a);
-		auto y=--t2 - v.begin();
-		if (*t2==a){
-			res++;
-		}
-		cout<<x-y+res<<endl;
-		// cout<<(--s.upper_bound(b))-(--s.upper_bound(a))<<endl;
-	}
+	int n=4000009;
+	vi v(n);
+	vi res(n,0);
+	//int tc=0;
+    for(int i=0;i<n;i++) {
+        v[i] = i;
+    }
+    for(int i=2;i<n;i++) {
+    	//tc++;
+        if(v[i]==i) {
+            v[i]=i-1;
+            for(int j=2*i;j<n;j+=i) {
+            	//tc++;
+                int x=v[j]/i;
+                v[j]=x*(i-1);
+            }
+        }
+    }
+    for(int i=1;i<n;++i) {
+    	//tc++;
+        res[i]+=i-1;
+        for(int j=2*i;j<n;j+=i) {
+        	// tc++;
+            res[j]+=i*((1+v[j/i])/2);
+        }
+    }
+    // cout<<tc<<endl;
+    w(t){
+        int k ;
+        cin>>k;
+        cout<<res[4*k+1]<<endl;
+    }
 }
 
 int main()
