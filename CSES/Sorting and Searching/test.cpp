@@ -24,38 +24,32 @@ using namespace __gnu_pbds;
 template<class T> using oset =tree<T, null_type, less<T>, rb_tree_tag,tree_order_statistics_node_update> ;
 
 void kush_gupta_solves(){
-	int n=4000009;
-	vi v(n);
-	vi res(n,0);
-	//int tc=0;
-    for(int i=0;i<n;i++) {
-        v[i] = i;
-    }
-    for(int i=2;i<n;i++) {
-    	//tc++;
-        if(v[i]==i) {
-            v[i]=i-1;
-            for(int j=2*i;j<n;j+=i) {
-            	//tc++;
-                int x=v[j]/i;
-                v[j]=x*(i-1);
-            }
-        }
-    }
-    for(int i=1;i<n;++i) {
-    	//tc++;
-        res[i]+=i-1;
-        for(int j=2*i;j<n;j+=i) {
-        	// tc++;
-            res[j]+=i*((1+v[j/i])/2);
-        }
-    }
-    // cout<<tc<<endl;
-    w(t){
-        int k ;
-        cin>>k;
-        cout<<res[4*k+1]<<endl;
-    }
+	ll n=0,k=0;
+	cin>>n>>k;
+	unordered_map <ll,ll> mp;
+	vll v(n);
+	loop(i,0,n){
+		cin>>v[i];
+		mp[v[i]%k]++;
+	}
+	for (ll i=0;i<k;i++){
+		cout<<mp[i]<<" ";
+	}
+	cout<<endl;
+	ll s=0;
+	if (mp[0]>0){
+		s=1;
+	}
+	for (ll i=1;i<k/2;i++){
+		s+=max(mp[i],mp[k-i]);		
+	}
+	if (k%2==0 and mp[k/2]){
+		s+=1;
+	}
+	else if(k%2==1 and k!=1){
+		s+=max(mp[k/2],mp[k/2+1]);
+	}
+	cout<<s<<endl;
 }
 
 int main()
