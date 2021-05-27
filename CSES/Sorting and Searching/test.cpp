@@ -23,29 +23,23 @@ using namespace __gnu_pbds;
 
 template<class T> using oset =tree<T, null_type, less<T>, rb_tree_tag,tree_order_statistics_node_update> ;
 
-ll APsum(ll n,ll a,ll d=1){
-	return (2*a+(n-1)*d)*n/2;
-}
-
 void kush_gupta_solves(){
 	w(t){
-		ll x1,x2,y1,y2;
-		cin>>x1>>y1>>x2>>y2;
-		ll res=0;
-		ll a=APsum(x1-1,1)+1;
-		cout<<a<<endl;
-		ll i;
-		cout<<a<<endl;
-		for (i=0;i<y1-1;i++){
-			a+=x1+1+i;
+		ll n=0;
+		cin>>n;
+		ll min=INT_MAX,minC=0;
+		loop(i,0,n){
+			ll x=0;
+			cin>>x;
+			if (x<min){
+				min=x;
+				minC=1;
+			}
+			else if (x==min){
+				minC++;
+			}
 		}
-		// cout<<a<<endl;
-		res=a;
-		for (ll i=y1-1;i<y2-1;i++){
-			a+=x1+i+1;
-			res+=a;
-		}
-		
+		cout<<n-minC<<endl;
 	}
 }
 
