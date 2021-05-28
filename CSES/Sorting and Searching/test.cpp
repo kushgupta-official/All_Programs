@@ -27,19 +27,25 @@ void kush_gupta_solves(){
 	w(t){
 		ll n=0;
 		cin>>n;
-		ll min=INT_MAX,minC=0;
+		vll v(n);
 		loop(i,0,n){
-			ll x=0;
-			cin>>x;
-			if (x<min){
-				min=x;
-				minC=1;
-			}
-			else if (x==min){
-				minC++;
-			}
+			cin>>v[i];
 		}
-		cout<<n-minC<<endl;
+		sort(v.begin(), v.end());
+		ll i=0;
+		ll res=0;
+		ll mx=INT_MIN;
+		while(v[i]<=0 and i<n){
+			res++;
+			mx=max(mx,v[i]);
+			i++;
+		}
+		if (i<n and v[i]>0){
+			cout<<res+1<<endl;
+		}
+		else{
+			cout<<res<<endl;
+		}
 	}
 }
 
