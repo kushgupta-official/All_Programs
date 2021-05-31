@@ -23,47 +23,19 @@ using namespace __gnu_pbds;
 
 template<class T> using oset =tree<T, null_type, less<T>, rb_tree_tag,tree_order_statistics_node_update> ;
 
-void kmax(vll &v, ll k, ll n) {
-    for(ll c = 0; c < k; c++){
-        ll max_so_far = numeric_limits<ll>::min();
-        ll max_here = 0;
-        ll start = 0, end = 0, s = 0;
-        for(ll i = 0; i < n; i++)
-        {
-            max_here += v[i];
-            if (max_so_far < max_here)
-            {
-                max_so_far = max_here;
-                start = s;
-                end = i;
-            }
-            if (max_here < 0)
-            {
-                max_here = 0;
-                s = i + 1;
-            }
-        }
-        cout << "Maximum non-overlapping sub-vay sum"
-             << (c + 1) << ": "<< max_so_far
-             << ", starting index: " << start
-             << ", ending index: " << end << "." << endl;
-        for (ll l = start; l <= end; l++)
-            v[l] = numeric_limits<ll>::min();
-    }
-    cout << endl;
-}
-
 void kush_gupta_solves(){
 	w(t){
-		ll n=0,k=0;
-		cin>>n>>k;
-		vll a(n);
-		loop(i,0,n){
-			cin>>a[i];
+		ll a,b,c,d,k;
+		cin>>a>>b>>c>>d>>k;
+		ll dist=abs(a-c)+abs(b-d);
+		if (k>=dist){
+			if ((dist%2==0 and k%2==0) or (dist%2==1 and k%2==1)){
+				cout<<"YES\n";
+				continue;
+			}
 		}
-		kmax(a,k,n);
+		cout<<"NO\n";
 	}
-	
 }
 
 int main()
