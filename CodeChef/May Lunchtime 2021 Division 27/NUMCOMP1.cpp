@@ -25,8 +25,6 @@ template<class T> using oset =tree<T, null_type, less<T>, rb_tree_tag,tree_order
 
 void kush_gupta_solves(){
 	//sieveOfE
-	// bool isPrime[]
-	// vector <ll> primes;
 	vll sol(10000001,0);
 	vector <bool> isPrime(10000001,true);
 	for (ll i=2;i<10000001;i++){
@@ -34,7 +32,6 @@ void kush_gupta_solves(){
 			sol[i]=1;
 			if (i+i<10000001)
 				sol[i+i]=-1;
-			// primes.push_back(i);
 			for (ll j=i*i;j<10000001;j+=i){
 				isPrime[j]=false;
 			}
@@ -42,13 +39,7 @@ void kush_gupta_solves(){
 	}
 	loop(i,2,10000001){
 		sol[i]+=sol[i-1];
-		// cout<<sol[i]<<" ";
 	}
-	// loop(i,0,primes.size()){
-	// 	cout<<primes[i]<<" ";
-	// }
-	// cout<<endl;
-	// cout<<primes.size()<<endl;
 	w(t){
 		ll n=0;
 		cin>>n;
@@ -60,37 +51,6 @@ void kush_gupta_solves(){
 		else
 			cout<<sol[n];
 		cout<<endl;
-		// ll pos=lower_bound(primes.begin(), primes.end(),n)-primes.begin();
-		// // cout<<"pos="<<pos<<endl;
-		// if (primes[pos]>n){
-		// 	pos--;
-		// }
-		// while(pos>=0){
-		// 	if (primes[pos]*2>n){
-		// 		res++;
-		// 		pos--;
-		// 	}
-		// 	else{
-		// 		flag=1;
-		// 		break;
-		// 	}
-		// }
-		// while(i<primes.size() && primes[i]<=n){
-		// 	if (primes[i]*2>n){
-		// 		res++;
-		// 	}
-		// 	else{
-		// 		flag=1;
-		// 	}
-		// 	i++;
-		// }
-		// if (n==2){
-		// 	cout<<1<<endl;
-		// }
-		// else
-		// if (res>1)
-		// 	res++;
-		// cout<<res+flag<<endl;
 	}
 }
 
