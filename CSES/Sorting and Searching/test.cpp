@@ -23,47 +23,70 @@ using namespace __gnu_pbds;
 
 template<class T> using oset =tree<T, null_type, less<T>, rb_tree_tag,tree_order_statistics_node_update> ;
 
-void kmax(vll &v, ll k, ll n) {
-    for(ll c = 0; c < k; c++){
-        ll max_so_far = numeric_limits<ll>::min();
-        ll max_here = 0;
-        ll start = 0, end = 0, s = 0;
-        for(ll i = 0; i < n; i++)
-        {
-            max_here += v[i];
-            if (max_so_far < max_here)
-            {
-                max_so_far = max_here;
-                start = s;
-                end = i;
-            }
-            if (max_here < 0)
-            {
-                max_here = 0;
-                s = i + 1;
-            }
+int res,temp;
+    vector <vector <bool> > visited;
+    vector <pair <int,int> > directions;
+    void dfs(vector<vector<int>>& grid,int i,int j){
+        // if (i<0 or i>=grid.size() or j<0 or j>=grid[0].size()){
+        //     return; 
+        // }
+        // if (grid[i][j]==0){
+        //     return;
+        // }
+        if (visited[i][j]){
+            return;
         }
-        cout << "Maximum non-overlapping sub-vay sum"
-             << (c + 1) << ": "<< max_so_far
-             << ", starting index: " << start
-             << ", ending index: " << end << "." << endl;
-        for (ll l = start; l <= end; l++)
-            v[l] = numeric_limits<ll>::min();
+        visited[i][j]=1;
+        temp++;
+        for (int k=0;k<4;k++){
+        	int x=i+directions[k].first;
+        	int y=j+directions[k].second;
+        	cout<<x<<" "<<y<<endl;
+        	// if (!(x<0 or x>=grid.size() or y<0 or y>=grid[0].size())){
+        	// 	if (grid[x][y]==1)
+         //    		dfs(grid,x,y);
+         //    }
+        }
     }
-    cout << endl;
-}
+    int maxAreaOfIsland(vector<vector<int>>& grid) {
+        res=INT_MIN;
+        directions={ {1,0} , {-1,0} , {0,1} , {0,-1} };
+        visited.resize(grid.size());
+        for (int i=0;i<grid.size();i++){
+            visited[i].resize(grid[0].size(),false);
+        }
+        for (int i=0;i<grid.size();i++){
+            for (int j=0;j<grid[0].size();j++){
+            	cout<<visited[i][j]<<" ";
+            }
+            cout<<endl;
+        }
+        
+        // cout<<"hi";
+        // for (int i=0;i<grid.size();i++){
+        //     for (int j=0;j<grid[0].size();j++){
+        //         if (grid[i][j]==1 && !visited[i][j]){
+        //             temp=0;
+        //             dfs(grid,i,j);
+        //             res=max(res,temp);
+        //         }
+        //     }
+        // }
+        return res;
+    }
 
 void kush_gupta_solves(){
-	w(t){
-		ll n=0,k=0;
-		cin>>n>>k;
-		vll a(n);
-		loop(i,0,n){
-			cin>>a[i];
+	int x=0,y=0;
+	cin>>x>>y;
+	vector <vector <int> > grid;
+	grid.resize(x);
+	loop(i,0,x){
+		grid[i].resize(y);
+		loop(j,0,y){
+			cin>>grid[i][j];
 		}
-		kmax(a,k,n);
 	}
-	
+	cout<<maxAreaOfIsland(grid);
 }
 
 int main()

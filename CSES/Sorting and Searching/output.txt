@@ -1,8 +1,5 @@
-Maximum non-overlapping sub-vay sum1: 6, starting index: 0, ending index: 4.
-Maximum non-overlapping sub-vay sum2: -9223372036854775808, starting index: 0, ending index: 0.
-
-Maximum non-overlapping sub-vay sum1: 13, starting index: 1, ending index: 2.
-Maximum non-overlapping sub-vay sum2: 12, starting index: 4, ending index: 4.
-
-
+0 0 0 
+0 0 0 
+0 0 0 
+-2147483648
 Time Taken : 0.000000 sec
