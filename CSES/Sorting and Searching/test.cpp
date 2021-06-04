@@ -23,70 +23,38 @@ using namespace __gnu_pbds;
 
 template<class T> using oset =tree<T, null_type, less<T>, rb_tree_tag,tree_order_statistics_node_update> ;
 
-int res,temp;
-    vector <vector <bool> > visited;
-    vector <pair <int,int> > directions;
-    void dfs(vector<vector<int>>& grid,int i,int j){
-        // if (i<0 or i>=grid.size() or j<0 or j>=grid[0].size()){
-        //     return; 
-        // }
-        // if (grid[i][j]==0){
-        //     return;
-        // }
-        if (visited[i][j]){
-            return;
-        }
-        visited[i][j]=1;
-        temp++;
-        for (int k=0;k<4;k++){
-        	int x=i+directions[k].first;
-        	int y=j+directions[k].second;
-        	cout<<x<<" "<<y<<endl;
-        	// if (!(x<0 or x>=grid.size() or y<0 or y>=grid[0].size())){
-        	// 	if (grid[x][y]==1)
-         //    		dfs(grid,x,y);
-         //    }
-        }
-    }
-    int maxAreaOfIsland(vector<vector<int>>& grid) {
-        res=INT_MIN;
-        directions={ {1,0} , {-1,0} , {0,1} , {0,-1} };
-        visited.resize(grid.size());
-        for (int i=0;i<grid.size();i++){
-            visited[i].resize(grid[0].size(),false);
-        }
-        for (int i=0;i<grid.size();i++){
-            for (int j=0;j<grid[0].size();j++){
-            	cout<<visited[i][j]<<" ";
-            }
-            cout<<endl;
-        }
-        
-        // cout<<"hi";
-        // for (int i=0;i<grid.size();i++){
-        //     for (int j=0;j<grid[0].size();j++){
-        //         if (grid[i][j]==1 && !visited[i][j]){
-        //             temp=0;
-        //             dfs(grid,i,j);
-        //             res=max(res,temp);
-        //         }
-        //     }
-        // }
-        return res;
-    }
-
 void kush_gupta_solves(){
-	int x=0,y=0;
-	cin>>x>>y;
-	vector <vector <int> > grid;
-	grid.resize(x);
-	loop(i,0,x){
-		grid[i].resize(y);
-		loop(j,0,y){
-			cin>>grid[i][j];
+	ll n=0;
+	cin>>n;
+	string s;
+	cin>>s;
+	vector <ll> f(10);
+	vector <ll> vb(10,0);
+	for (ll i=1;i<10;i++){
+		cin>>f[i];
+		if (f[i]>i){
+			vb[i]=1;
+		}
+		else if (f[i]==i){
+			vb[i]=2;
 		}
 	}
-	cout<<maxAreaOfIsland(grid);
+	ll flag=0;
+	ll num=0;
+	string res;
+	for (ll i=0;i<n;i++){
+		if (vb[s[i]-'0']==1 and flag!=2){
+			cout<<f[s[i]-'0'];
+			flag=1;
+		}
+		else{
+			cout<<s[i]-'0';
+			if (flag==1 and vb[s[i]-'0']!=2){
+				flag=2;
+			}
+		}
+	}
+	// cout<<num<<endl;
 }
 
 int main()
