@@ -23,38 +23,49 @@ using namespace __gnu_pbds;
 
 template<class T> using oset =tree<T, null_type, less<T>, rb_tree_tag,tree_order_statistics_node_update> ;
 
+int fact(int n) {
+    int res = 1;
+    for (int i = 2; i <= n; i++)
+        res = res * i;
+    return res;
+}
+
+int ncr(int n, int r) {
+    return fact(n) / (fact(r) * fact(n - r));
+}
+
 void kush_gupta_solves(){
-	ll n=0;
-	cin>>n;
-	string s;
-	cin>>s;
-	vector <ll> f(10);
-	vector <ll> vb(10,0);
-	for (ll i=1;i<10;i++){
-		cin>>f[i];
-		if (f[i]>i){
-			vb[i]=1;
+	w(t){
+		ll n=0,l=0,r=0;
+		cin>>n>>l>>r;
+		vll v(n);
+		loop(i,0,n){
+			cin>>v[i];
 		}
-		else if (f[i]==i){
-			vb[i]=2;
-		}
-	}
-	ll flag=0;
-	ll num=0;
-	string res;
-	for (ll i=0;i<n;i++){
-		if (vb[s[i]-'0']==1 and flag!=2){
-			cout<<f[s[i]-'0'];
-			flag=1;
-		}
-		else{
-			cout<<s[i]-'0';
-			if (flag==1 and vb[s[i]-'0']!=2){
-				flag=2;
+		sort(v.begin(), v.end());
+		int i,j;
+		for (i=0,j=1;i<j;i++){
+			if (v[i]+v[j]>=l){
+				break;
 			}
 		}
+		ll s=i;
+		for (i=s,j=s+1;j<n;j++){
+			if (v[i]+v[j]>=l){
+				break;
+			}
+		}
+		ll s1=j-1;
+		for (i=n-1,j=n-2;j>=0;j--){
+			if (v[i]+v[j]<=r){
+				break;
+			}
+		}
+		ll e1=n-j;
+		ll e=n-1;
+		cout<<s<<" "<<s1<<" "<<e1<<" "<<e<<endl;
+		cout<<ncr(e-s+1,2)-ncr(s1-1-s+1,2)-ncr(e-e1,2)<<endl;
 	}
-	// cout<<num<<endl;
 }
 
 int main()
