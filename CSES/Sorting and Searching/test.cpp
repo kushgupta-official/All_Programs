@@ -23,49 +23,35 @@ using namespace __gnu_pbds;
 
 template<class T> using oset =tree<T, null_type, less<T>, rb_tree_tag,tree_order_statistics_node_update> ;
 
-int fact(int n) {
-    int res = 1;
-    for (int i = 2; i <= n; i++)
-        res = res * i;
-    return res;
-}
-
-int ncr(int n, int r) {
-    return fact(n) / (fact(r) * fact(n - r));
-}
-
 void kush_gupta_solves(){
-	w(t){
-		ll n=0,l=0,r=0;
-		cin>>n>>l>>r;
-		vll v(n);
-		loop(i,0,n){
-			cin>>v[i];
-		}
-		sort(v.begin(), v.end());
-		int i,j;
-		for (i=0,j=1;i<j;i++){
-			if (v[i]+v[j]>=l){
-				break;
-			}
-		}
-		ll s=i;
-		for (i=s,j=s+1;j<n;j++){
-			if (v[i]+v[j]>=l){
-				break;
-			}
-		}
-		ll s1=j-1;
-		for (i=n-1,j=n-2;j>=0;j--){
-			if (v[i]+v[j]<=r){
-				break;
-			}
-		}
-		ll e1=n-j;
-		ll e=n-1;
-		cout<<s<<" "<<s1<<" "<<e1<<" "<<e<<endl;
-		cout<<ncr(e-s+1,2)-ncr(s1-1-s+1,2)-ncr(e-e1,2)<<endl;
+	int n=0,x=0;
+	cin>>n>>x;
+	vector <int> a(n);
+	for (int i=0;i<n;i++){
+		cin>>a[i];
 	}
+	int s=0,e=0;
+	int currsum=0,count=0;
+	while(e<n){
+		currsum+=a[e];
+		if (currsum==x){
+			count++;
+		}
+		else if (a[e]>x){
+			s=e+1;
+		}
+		else if (currsum>x){
+			while(currsum>x){
+				currsum-=a[s];
+				s++;
+			}
+			if (currsum==x){
+				count++;
+			}
+		}
+		e++;
+	}
+	cout<<count;
 }
 
 int main()
