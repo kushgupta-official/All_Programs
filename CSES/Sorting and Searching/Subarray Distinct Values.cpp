@@ -26,39 +26,34 @@ template<class T> using oset =tree<T, null_type, less<T>, rb_tree_tag,tree_order
 void kush_gupta_solves(){
 	ll n=0,k=0;
 	cin>>n>>k;
-	vll v(n);
+	vi v(n);
 	loop(i,0,n){
 		cin>>v[i];
 	}
-	ll l=0,r=0;
-	map <ll,ll> mp;
-	ll count_distinct=0;
+	ll s=0,e=0;
 	ll res=0;
-	while(l<=r){
-		if(!mp[v[r]]){
-			count_distinct++;
-			mp[v[r]]++;
+	unordered_map <ll,ll> mp;
+	ll cnt=0;
+	while(e<n){
+		if (!mp[v[e]]){
+			cnt++;
 		}
-		if (count_distinct<=k){
-			res++;
-			// cout<<l+1<<' '<<r+1<<endl;
-			// res+=r-l+1;
-			r==n-1?l++:r++;
-		}
-		else{
-			mp[v[l]]--;
-			if (mp[v[l]]==0){
-				count_distinct--;
+		mp[v[e]]++;
+		if (cnt>k){
+			while (cnt>k){
+				mp[v[s]]--;
+				if (!mp[v[s]]){
+					cnt--;
+				}
+				s++;
 			}
-			l++;
+			// s--;
 		}
+		res+=e-s+1;
+		cout<<e-s+1<<"+";
+		e++;
 	}
-	if (k==1){
-		cout<<res;
-	}
-	else{
-		cout<<res+n-2;
-	}
+	cout<<"0="<<res;
 }
 
 int main()
