@@ -24,34 +24,24 @@ using namespace __gnu_pbds;
 template<class T> using oset =tree<T, null_type, less<T>, rb_tree_tag,tree_order_statistics_node_update> ;
 
 void kush_gupta_solves(){
-	int n=0,x=0;
-	cin>>n>>x;
-	vector <int> a(n);
-	for (int i=0;i<n;i++){
-		cin>>a[i];
+	ll n=0,k=0;
+	cin>>n>>k;
+	string s;
+	cin>>s;
+	string res;
+	res.push_back(s[0]);
+	for (ll i=1;i<min((ll)s.length(),k);i++){
+		if (s[i]>s[i-1])
+			break;
+		res+=s[i];
 	}
-	int s=0,e=0;
-	int currsum=0,count=0;
-	while(e<n){
-		currsum+=a[e];
-		if (currsum==x){
-			count++;
-		}
-		else if (a[e]>x){
-			s=e+1;
-		}
-		else if (currsum>x){
-			while(currsum>x){
-				currsum-=a[s];
-				s++;
-			}
-			if (currsum==x){
-				count++;
-			}
-		}
-		e++;
+	while(res.size()<k){
+		res+=res;
 	}
-	cout<<count;
+	while (res.size()>k){
+		res.pop_back();
+	}
+	cout<<res;
 }
 
 int main()
