@@ -24,39 +24,89 @@ using namespace __gnu_pbds;
 template<class T> using oset =tree<T, null_type, less<T>, rb_tree_tag,tree_order_statistics_node_update> ;
 
 void kush_gupta_solves(){
-	ll n=0,k=0,x=0;
-	cin>>n>>k>>x;
-	vll v(n);
-	loop(i,0,n){
-		cin>>v[i];
-	}
-	sort(v.begin(), v.end());
-	ll res=0;
-	ll i=0;
-	priority_queue <ll,vector <ll>, greater<ll> > pq;
-	while(i<n){
-		i++;
-		while(i<n and v[i]-v[i-1]<=x){
-			i++;
+	w(t){
+		ll n=0;
+		ll res=0;
+		cin>>n;
+		string s;
+		cin>>s;
+		ll mn=INT_MAX;
+		ll prevOne=-1;
+		ll cz=0,co=0;
+		ll firstOne=-1,sum=0;
+		// ll mx=INT_MIN;
+		// map <ll,ll> gaps;
+		loop(i,0,n){
+			if (s[i]=='0'){
+				cz++;
+			}
+			else if (s[i]=='1'){
+				co++;
+			}
+			if (s[i]=='1'){
+				if (prevOne==-1){
+					prevOne=i;
+					firstOne=i;
+				}
+				else{
+					mn=min(mn,i-prevOne);
+					// gaps[i-prevOne]++;
+					// mx=max(mx,gaps[i-prevOne]);
+					sum++;
+					prevOne=i;
+				}
+			}
 		}
-		// cout<<i<<endl;
-		res++;
-		pq.push((v[i]-v[i-1]-1)/x);
-	}
-	while(!pq.empty()){
-		if (k==0)
-			break;
-		// cout<<pq.top()<<" ";
-		if (k>=pq.top()){
-			k-=pq.top();
-			pq.pop();
-			res-=1;
+		// cout<<firstOne<<" "<<prevOne<<endl;
+		mn=min(mn,n-(prevOne-firstOne));
+		// cout<<mn<<endl;
+		if (mn==INT_MAX){
+			cout<<1<<endl;
+		}
+		else if (co==1){
+			cout<<0<<endl;
+		}
+		else if (co==0){
+			cout<<1<<endl;
 		}
 		else{
-			break;
+			// ll i=firstOne+mn;
+			ll i;
+			for (i=firstOne+mn;i<s.size();i+=mn){
+				// cout<<i<<endl;
+				// i=i+mn;
+				if (s[i]=='0'){
+					res++;
+					s[i]='1';
+				}
+			}
+			if (s[i%n]=='0'){
+				res++;
+				s[i]='1';
+			}
+			prevOne=-1;
+			ll mn2=INT_MAX;
+			loop(i,0,n){
+				if (s[i]=='1'){
+					if (prevOne==-1){
+						prevOne=i;
+						// firstOne=i;
+					}
+					else{
+						mn2=min(mn2,i-prevOne);
+						prevOne=i;
+					}
+				}
+			}
+			mn2=min(mn2,n-(prevOne-firstOne));
+			if (mn2!=mn){
+				cout<<min(co-1,cz)<<endl;
+			}	
+			else{
+				cout<<min(co-1,res)<<endl;
+			}
 		}
 	}
-	cout<<res<<endl;
 }
 
 int main()
