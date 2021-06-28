@@ -1,53 +1,86 @@
-class Solution {
-public:
-    vector <int> res;
-    vector <bool> vis;
-    vector <vector <int> > adj;
-    stack <int> s;
-    unordered_set <int> uset;
-    bool isCycle=false;
-    void dfs(int curr,int prev){
-        if (isCycle){
-            return;
-        }
-        vis[curr]=true;
-        // cout<<curr<<" ";
-        s.push(curr);
-        for (int i=0;i<adj[curr].size() and !isCycle;i++){
-            if (adj[curr][i]!=prev){
-                if (vis[adj[curr][i]]){
-                    while(s.top()!=adj[curr][i]){
-                        uset.insert(s.top());
-                        cout<<s.top()<<" ";
-                        s.pop();
-                    }
-                    isCycle=true;
-                    // cout<<"yo ";
-                    uset.insert(s.top());
-                    return;
-                    // break;
-                }
-                else
-                    dfs(adj[curr][i],curr);
+# include <bits/stdc++.h>
+# include <ext/pb_ds/assoc_container.hpp> 
+# include <ext/pb_ds/tree_policy.hpp> 
+
+using namespace std;
+using namespace __gnu_pbds; 
+
+# define ll long long
+# define ld long double
+# define loop(i,a,b) for(ll i=a;i<b;i++)
+# define vi vector<int>
+# define vll vector<ll>
+# define vvl vector<vector <ll> >
+# define vp vector <pair <ll,ll> >
+# define vpp vector <pair <pair <ll,ll>,ll> >
+# define pp pair <pair <ll,ll>,ll>
+# define pb(x) push_back(x)
+# define w(x) ll x=0; cin>>x; while(x--)
+# define endl '\n'
+# define mid(l,r) l+(r-l)/2
+# define fi first
+# define se second
+
+template<class T> using oset =tree<T, null_type, less<T>, rb_tree_tag,tree_order_statistics_node_update> ;
+
+void kush_gupta_solves(){
+    w(t){
+        ll n=0;
+        cin>>n;
+        vll v(n);
+        vll evens,odds;
+        loop(i,0,n){
+            cin>>v[i];
+            if (v[i]%2){
+                odds.push_back(v[i]);
+            }
+            else{
+                evens.push_back(v[i]);
             }
         }
-    }
-    vector<int> findRedundantConnection(vector<vector<int>>& edges) {
-        int n=edges.size();
-        vis.resize(n+1,false);
-        adj.resize(n+1);
-        for (int i=0;i<n;i++){
-            adj[edges[i][0]].push_back(edges[i][1]);
-            adj[edges[i][1]].push_back(edges[i][0]);
-        }
-        dfs(1,-1);
-        for (int i=edges.size()-1;i>=0;i--){
-            if (uset.find(edges[i][0])!=uset.end() and uset.find(edges[i][1])!=uset.end()){
-                res.push_back(edges[i][0]);
-                res.push_back(edges[i][1]);
-                break;
+        ll i=0,j=0;
+        ll _n=evens.size();
+        ll m=odds.size();
+            cout<<_n<<" "<<m<<endl;
+        while(i<_n and j<m){
+            if (i==j){
+                cout<<evens[i++]<<" ";
+            }
+            else{
+                cout<<odds[j++]<<" ";
             }
         }
-        return res;
+        while(i<_n){
+            cout<<evens[i++]<<" ";
+        }
+        while(j<m){
+            cout<<odds[j++]<<" ";
+        }
+        cout<<endl;
     }
-};
+}
+
+int main()
+{
+    #ifndef ONLINE_JUDGE
+        auto __start = chrono::high_resolution_clock::now(); 
+        freopen("input.txt", "r", stdin) ;
+          freopen("output.txt", "w", stdout) ;
+    #endif
+
+    ios::sync_with_stdio(0);
+    cin.tie(0);
+    cout.tie(0);
+
+    kush_gupta_solves();
+
+    #ifndef ONLINE_JUDGE
+        auto __end = chrono::high_resolution_clock::now(); 
+        double __time_taken=chrono::duration_cast<chrono::nanoseconds>(__end - __start).count(); 
+        __time_taken *= 1e-9; 
+        cout<<"\nTime Taken : "<<fixed<< __time_taken << setprecision(9); 
+        cout << " sec" << endl;
+    #endif
+
+    return 0;
+}
