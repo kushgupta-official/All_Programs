@@ -25,38 +25,24 @@ template<class T> using oset =tree<T, null_type, less<T>, rb_tree_tag,tree_order
 
 void kush_gupta_solves(){
     w(t){
-        ll n=0;
+        ll n=0,co=0,ce=0;
         cin>>n;
-        vll v(n);
-        vll evens,odds;
-        loop(i,0,n){
-            cin>>v[i];
-            if (v[i]%2){
-                odds.push_back(v[i]);
+        loop(i,0,2*n){
+            ll x=0;
+            cin>>x;
+            if (x&1){
+                co++;
             }
             else{
-                evens.push_back(v[i]);
+                ce++;
             }
         }
-        ll i=0,j=0;
-        ll _n=evens.size();
-        ll m=odds.size();
-            cout<<_n<<" "<<m<<endl;
-        while(i<_n and j<m){
-            if (i==j){
-                cout<<evens[i++]<<" ";
-            }
-            else{
-                cout<<odds[j++]<<" ";
-            }
+        if (co==ce){
+            cout<<"Yes\n";
         }
-        while(i<_n){
-            cout<<evens[i++]<<" ";
+        else{
+            cout<<"No\n";
         }
-        while(j<m){
-            cout<<odds[j++]<<" ";
-        }
-        cout<<endl;
     }
 }
 
