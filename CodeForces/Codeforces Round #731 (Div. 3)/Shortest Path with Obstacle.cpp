@@ -25,22 +25,26 @@ template<class T> using oset =tree<T, null_type, less<T>, rb_tree_tag,tree_order
 
 void kush_gupta_solves(){
     w(t){
-        ll n=0;
-        cin>>n;
-        vll a(n);
-        loop(i,0,n){
-            cin>>a[i];
-        }
-        vll b(n);
-        b[0]=0;
-        loop(i,1,n){
-            if (a[i]&a[i-1]==a[i-1]){
-                b[i]=0;
+        ll sx=0,sy=0,ex=0,ey=0,ox=0,oy=0;
+        cin>>sy>>sx;
+        cin>>ey>>ex;
+        cin>>oy>>ox;
+
+        if (sx==ex or sy==ey){
+            if (sx==ex and sx==ox and ((sy<oy and oy>sy and oy<ey) or (sy>oy and oy>ey and oy<sy))){
+                cout<<abs(sx-ex)+abs(sy-ey)+2;
+            }
+            else if (sy==ey and sy==oy and ((sx<ox and ox>sx and ox<ex) or (sx>ox and ox>ex and ox<sx))){
+                cout<<abs(sx-ex)+abs(sy-ey)+2;
             }
             else{
-                
+                cout<<abs(sx-ex)+abs(sy-ey);
             }
         }
+        else{
+            cout<<abs(sx-ex)+abs(sy-ey);
+        }
+        cout<<endl;
     }
 }
 
