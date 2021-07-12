@@ -24,59 +24,55 @@ using namespace __gnu_pbds;
 template<class T> using oset =tree<T, null_type, less<T>, rb_tree_tag,tree_order_statistics_node_update> ;
 
 void kush_gupta_solves(){
-	ll n=0,k=0;
-	cin>>n>>k;
-	vi v(n);
-	loop(i,0,n){
-		cin>>v[i];
-	}
-	ll s=0,e=0;
-	ll res=0;
-	unordered_map <ll,ll> mp;
-	ll cnt=0;
-	while(e<n){
-		if (!mp[v[e]]){
-			cnt++;
-		}
-		mp[v[e]]++;
-		if (cnt>k){
-			while (cnt>k){
-				mp[v[s]]--;
-				if (!mp[v[s]]){
-					cnt--;
-				}
-				s++;
-			}
-			// s--;
-		}
-		res+=e-s+1;
-		cout<<e-s+1<<"+";
-		e++;
-	}
-	cout<<"0="<<res;
+    ll n,k;
+    cin>>n>>k;
+    vll v(n);
+    loop(i,0,n){
+        cin>>v[i];
+    }
+    ll i=0,j=0;
+    map <ll,ll> mp;
+    ll distinct=0;
+    ll ans=0;
+    for (ll i=0;i<n;i++){
+        if (mp[v[i]]==0)
+            distinct++;
+        mp[v[i]]++;
+        while(distinct>k){
+            mp[v[j]]--;
+            if (mp[v[j]]==0)
+                distinct--;
+            j++;
+        }
+        // for (int k=j;k<=i;k++)
+        //     cout<<v[k]<<" ";
+        // cout<<endl;
+        ans+=i-j+1;
+    }   
+    cout<<ans<<endl;
 }
 
 int main()
 {
-	#ifndef ONLINE_JUDGE
-		auto __start = chrono::high_resolution_clock::now(); 
-		freopen("input.txt", "r", stdin) ;
-  		freopen("output.txt", "w", stdout) ;
-	#endif
+    #ifndef ONLINE_JUDGE
+        auto __start = chrono::high_resolution_clock::now(); 
+        freopen("input.txt", "r", stdin) ;
+          freopen("output.txt", "w", stdout) ;
+    #endif
 
-	ios::sync_with_stdio(0);
+    ios::sync_with_stdio(0);
     cin.tie(0);
     cout.tie(0);
 
-	kush_gupta_solves();
+    kush_gupta_solves();
 
-	#ifndef ONLINE_JUDGE
-		auto __end = chrono::high_resolution_clock::now(); 
-		double __time_taken=chrono::duration_cast<chrono::nanoseconds>(__end - __start).count(); 
-		__time_taken *= 1e-9; 
-		cout<<"\nTime Taken : "<<fixed<< __time_taken << setprecision(9); 
-		cout << " sec" << endl;
-	#endif
+    #ifndef ONLINE_JUDGE
+        auto __end = chrono::high_resolution_clock::now(); 
+        double __time_taken=chrono::duration_cast<chrono::nanoseconds>(__end - __start).count(); 
+        __time_taken *= 1e-9; 
+        cout<<"\nTime Taken : "<<fixed<< __time_taken << setprecision(9); 
+        cout << " sec" << endl;
+    #endif
 
-	return 0;
+    return 0;
 }
