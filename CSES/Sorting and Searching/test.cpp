@@ -23,35 +23,32 @@ using namespace __gnu_pbds;
 
 template<class T> using oset =tree<T, null_type, less<T>, rb_tree_tag,tree_order_statistics_node_update> ;
 
-bool comp(pair <ll,ll> p1, pair <ll,ll> p2){
-    if (p1.second==p2.second){
-        return p1.first<p2.first;
+vll ans;
+vector <bool> vis;
+vector <vector <ll> > v;
+
+ll dfs(ll curr){
+    for (auto ite:v[curr]){
+        ans[curr]+=1+dfs(ite);
     }
-    return p1.second<p2.second;
+    return ans[curr];
 }
 
 void kush_gupta_solves(){
-    ll n=0,k=0;
-    cin>>n>>k;
-    vp v(n);
-    loop(i,0,n){
-        cin>>v[i].first;
-        cin>>v[i].second;
+    ll n=0;
+    cin>>n;
+    ans.resize(n+1,0);
+    vis.resize(n+1,false);
+    v.resize(n+1);
+    ll temp;
+    for (ll i=2;i<=n;i++){
+        cin>>temp;
+        v[temp].push_back(i);
     }
-    sort(v.begin(), v.end(),comp);
-    multiset <ll> s;
-    for (ll i=0;i<k;i++){
-        s.insert(0);
+    dfs(1);
+    for (ll i=1;i<=n;i++){
+        cout<<ans[i]<<" ";
     }
-    ll res=0;
-    for (ll i=0;i<n;i++){
-        if (s.lower_bound(-(v[i].first))!=s.end()){
-            s.erase(s.lower_bound(-(v[i].first)));
-            s.insert(-v[i].second);
-            res++;
-        }
-    }
-    cout<<res;
 }
 
 int main()

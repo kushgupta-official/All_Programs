@@ -1,6 +1,10 @@
 # include <bits/stdc++.h>
+# include <ext/pb_ds/assoc_container.hpp> 
+# include <ext/pb_ds/tree_policy.hpp> 
 
 using namespace std;
+using namespace __gnu_pbds; 
+
 # define ll long long
 # define ld long double
 # define loop(i,a,b) for(ll i=a;i<b;i++)
@@ -17,61 +21,57 @@ using namespace std;
 # define fi first
 # define se second
 
-void kush_gupta(){
-  ios::sync_with_stdio(0);
-  cin.tie(0);
-  cout.tie(0);
-  #ifndef ONLINE_JUDGE
-  	freopen("input.txt", "r", stdin) ;
-  	freopen("output.txt", "w", stdout) ;
-  #endif
+template<class T> using oset =tree<T, null_type, less<T>, rb_tree_tag,tree_order_statistics_node_update> ;
+
+vll ans;
+vector <bool> vis;
+vector <vector <ll> > v;
+
+ll dfs(ll curr){
+    for (auto ite:v[curr]){
+        ans[curr]+=1+dfs(ite);
+    }
+    return ans[curr];
 }
 
-vector <vector <ll> > tree;
-ll n;
-vector <ll> subs;
-
-void solve(ll node, ll parent){
-	ll subords=0;
-	for (auto child:tree[node]){
-		if (child!=parent){
-			solve(child, node);
-			subords+=1+subs[child];
-		}
-	}
-	subs[node]=subords;
+void kush_gupta_solves(){
+    ll n=0;
+    cin>>n;
+    ans.resize(n+1,0);
+    vis.resize(n+1,false);
+    v.resize(n+1);
+    ll temp;
+    for (ll i=2;i<=n;i++){
+        cin>>temp;
+        v[temp].push_back(i);
+    }
+    dfs(1);
+    for (ll i=1;i<=n;i++){
+        cout<<ans[i]<<" ";
+    }
 }
 
 int main()
 {
-	kush_gupta();
-	#ifndef ONLINE_JUDGE
-		auto __start = chrono::high_resolution_clock::now(); 
-	#endif
+    #ifndef ONLINE_JUDGE
+        auto __start = chrono::high_resolution_clock::now(); 
+        freopen("input.txt", "r", stdin) ;
+          freopen("output.txt", "w", stdout) ;
+    #endif
 
-	cin>>n;
+    ios::sync_with_stdio(0);
+    cin.tie(0);
+    cout.tie(0);
 
-	tree.resize(n+1);
-	subs.resize(n+1);
+    kush_gupta_solves();
 
-	loop(i,2,n+1){
-		ll x=0;
-		cin>>x;
-		tree[i].push_back(x);
-		tree[x].push_back(i);
-	}
-	solve(1,0);
+    #ifndef ONLINE_JUDGE
+        auto __end = chrono::high_resolution_clock::now(); 
+        double __time_taken=chrono::duration_cast<chrono::nanoseconds>(__end - __start).count(); 
+        __time_taken *= 1e-9; 
+        cout<<"\nTime Taken : "<<fixed<< __time_taken << setprecision(9); 
+        cout << " sec" << endl;
+    #endif
 
-	loop(i,1,n+1){
-		cout<<subs[i]<<" ";
-	}
-
-	#ifndef ONLINE_JUDGE
-		auto __end = chrono::high_resolution_clock::now(); 
-		double __time_taken=chrono::duration_cast<chrono::nanoseconds>(__end - __start).count(); 
-		__time_taken *= 1e-9; 
-		cout<<"\nTime Taken : "<<fixed<< __time_taken << setprecision(9); 
-		cout << " sec" << endl;
-	#endif
-	return 0;
+    return 0;
 }
