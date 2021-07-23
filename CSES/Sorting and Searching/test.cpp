@@ -23,47 +23,61 @@ using namespace __gnu_pbds;
 
 template<class T> using oset =tree<T, null_type, less<T>, rb_tree_tag,tree_order_statistics_node_update> ;
 
-ll n;
-vector <vector <ll> > v;
-vector <ll> ans;
-
-pair <ll,ll> bfs(ll curr){
-    vector <bool> vis(n+1,false);
-    queue <pair <ll,ll> > q;
-    q.push({curr,0});
-    vis[curr]=true;
-    pair <ll,ll> u;
-    while(!q.empty()){
-        u=q.front();
-        q.pop();
-        for (auto ite:v[u.first]){
-            if (vis[ite])
-                continue;
-            vis[ite]=true;
-            q.push({ite,u.second+1});
-            ans[ite]=max(ans[ite],u.second+1);
-        }
-    }
-    return u;
-}
-
 void kush_gupta_solves(){
-    cin>>n;
-    v.resize(n+1);
-    ans.resize(n+1,0);
-    for (ll i=0;i<n-1;i++){
-        ll x,y;
-        cin>>x>>y;
-        v[x].push_back(y);
-        v[y].push_back(x);
+    w(t){
+        ll n=0,k=0;
+        cin>>n>>k;
+        vp v(n);
+        unordered_map <ll,ll> mp;
+        loop(i,0,n){
+            cin>>v[i].first;
+            v[i].second=i;
+            mp[v[i].first]++;
+        }
+        ll res=0;
+        ll x=0;
+        vll arr;
+        for (auto ite:mp){
+            if (ite.second>=k){
+                res++;
+                mp[ite.first]=1;
+            }
+            else{
+                x+=ite.second;
+                arr.push_back(ite.first);
+            }
+        }
+        res+=x/k;
+        // cout<<res<<endl;
+        loop(i,0,arr.size()){
+            cout<<arr[i]<<" y ";
+        }
+        cout<<endl;
+        vp temp=v;
+        sort(temp.begin(), temp.end());
+        x=1;
+        loop(i,0,n){
+            if (x==k+1){
+                x=1;
+            }
+            // cout<<temp[i].second<<" ";
+            if (x==1 and i>0 and temp[i].first==temp[i-1].first){
+                // x=1;
+                // cout<<"y";
+                v[temp[i].second].first=0;
+            }
+            else{
+                v[temp[i].second].first=x;
+                x++;
+            }
+            // v[temp[i].second].first=temp[i].first;
+        }
+        // cout<<endl;
+        loop(i,0,n){
+            cout<<v[i].first<<" ";
+        }
+        cout<<endl;
     }
-    pair <ll,ll> u=bfs(1);
-    pair <ll,ll> first_end=bfs(u.first);
-    pair <ll,ll> second_end=bfs(first_end.first);
-    loop(i,1,n+1){
-        cout<<ans[i]<<" ";
-    }
-    // cout<<ans.second;
 }
 
 int main()
