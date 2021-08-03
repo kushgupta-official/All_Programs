@@ -1,6 +1,8 @@
-YES
-NO
-YES
-NO
+30
+40
+750
+15
+25000000000000000
+15
 
-Time Taken : 0.000757 sec
+Time Taken : 0.000000 sec
