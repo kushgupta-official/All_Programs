@@ -31,22 +31,14 @@ void kush_gupta_solves(){
         vll res(n+1,0);
         loop(i,0,n){
             cin>>v[i];
-            // cout<<i-v[i]<<" ";
             if (i-v[i]+1<0){
                 res[0]=i+1;
             }
             else{
                 res[i-v[i]+1]=v[i];
             }
-            // cout<<i-v[i]+1<<" ";
         }
-        // cout<<endl;
         ll flag=0;
-        // cout<<0;
-        // loop(i,0,n){
-        //     cout<<res[i]<<" ";
-        // }
-        // cout<<endl;
         loop(i,0,n){
             if (res[i]){
                 cout<<1;
