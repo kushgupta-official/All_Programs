@@ -27,23 +27,34 @@ void kush_gupta_solves(){
     w(t){
         ll a,b;
         cin>>a>>b;
-        if (!a){
-            cout<<0;
-            cout<<endl;
-            continue;
+        ll n;
+        cin>>n;
+        vll attack(n),defend(n);
+        ll i=0;
+        for (i=0;i<n;i++){
+            cin>>attack[i];
         }
-        ll res=a+2,ans;
-        for (ll i=(b<2)?2-b:0;i<res;i++){
-            ll y=b+i;
-            ll x=a;
-            ans=i;
-            while(x){
-                x/=y;
-                ++ans;
+        for (i=0;i<n;i++){
+            cin>>defend[i];
+        }
+        for (i=0;i<n;i++){
+            if (b<=0){
+                break;
             }
-            if (ans<res) res=ans;
+            ll x=ceil((defend[i]*1.0)/a);
+            b-=attack[i]*x;
+            if (b<=0 and b+attack[i]<=0){
+                i=0;
+                break;
+            }
         }
-        cout<<res<<endl;
+        // cout<<b<<" "<<i<<endl;
+        if (b<=0 and i<n){
+            cout<<"NO\n";
+        }
+        else{
+            cout<<"YES\n";
+        }
     }
 }
 
