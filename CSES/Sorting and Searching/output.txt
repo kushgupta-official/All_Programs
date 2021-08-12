@@ -1,9 +1,4 @@
-YES
-YES
-NO
-YES
-YES
-NO
-YES
+9
+98901234567890123456
 
-Time Taken : 0.000785 sec
+Time Taken : 0.000999 sec
