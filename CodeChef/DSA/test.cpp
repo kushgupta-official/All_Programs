@@ -1,6 +1,10 @@
 # include <bits/stdc++.h>
+# include <ext/pb_ds/assoc_container.hpp> 
+# include <ext/pb_ds/tree_policy.hpp> 
 
 using namespace std;
+using namespace __gnu_pbds; 
+
 # define ll long long
 # define ld long double
 # define loop(i,a,b) for(ll i=a;i<b;i++)
@@ -17,46 +21,61 @@ using namespace std;
 # define fi first
 # define se second
 
-void kush_gupta(){
-  ios::sync_with_stdio(0);
-  cin.tie(0);
-  cout.tie(0);
-  #ifndef ONLINE_JUDGE
-  	freopen("input.txt", "r", stdin) ;
-  	freopen("output.txt", "w", stdout) ;
-  #endif
+template<class T> using oset =tree<T, null_type, less<T>, rb_tree_tag,tree_order_statistics_node_update> ;
+
+void kush_gupta_solves(){
+	w(t){
+		ll n;
+		cin>>n;
+		vll v1(n);
+		loop(i,0,n){
+			cin>>v1[i];
+		}
+
+		ll m;
+		cin>>m;
+		vll v2(m);
+		loop(i,0,m){
+			cin>>v2[i];
+		}
+
+		ll mx=INT_MIN;
+		ll curr=0;
+		ll p=0,q=0;
+		while(p<n and q<m){
+			if (v1[p]>v2[q]){
+				curr+=v1[p++];
+			}
+			else{
+				curr+=v2[q++];
+			}
+			mx=max(mx,curr);
+		}
+		while(p<n){
+			curr+=v1[p++];
+			mx=max(mx,curr);
+		}
+		while(q<m){
+			curr+=v2[q++];
+			mx=max(mx,curr);
+		}
+		cout<<mx<<endl;
+	}
 }
 
 int main()
 {
-	kush_gupta();
 	#ifndef ONLINE_JUDGE
 		auto __start = chrono::high_resolution_clock::now(); 
+		freopen("input.txt", "r", stdin) ;
+  		freopen("output.txt", "w", stdout) ;
 	#endif
 
-	vll pie(12);
-	pie[0]=0;
-	ll k=0,j=0;
-	string s1="ababbabbab";
-	loop(i,1,10){
-		if (s1[i]==s1[j]){
-			k++;
-			j++;
-			pie[i]=k;
-		}
-		else{
-			k=0;
-			j=0;
-			if (s1[i]==s1[j]){
-				k++;
-				j++;
-				pie[i]=k;
-			}
-		}
-	}
-	loop(i,0,11){
-		cout<<pie[i]<<" ";
-	}
+	ios::sync_with_stdio(0);
+    cin.tie(0);
+    cout.tie(0);
+
+	kush_gupta_solves();
 
 	#ifndef ONLINE_JUDGE
 		auto __end = chrono::high_resolution_clock::now(); 
@@ -65,5 +84,6 @@ int main()
 		cout<<"\nTime Taken : "<<fixed<< __time_taken << setprecision(9); 
 		cout << " sec" << endl;
 	#endif
+
 	return 0;
 }
