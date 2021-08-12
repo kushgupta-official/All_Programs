@@ -27,11 +27,9 @@ void kush_gupta_solves(){
     w(t){
         ll n=0,k=0;
         cin>>n>>k;
-        // ll x=k;
         if(n>k){
             k=ceil((n*1.0)/k)*k;
         }
-        // cout<<ceil(n/k)<<endl;
         ll res=ceil((k*1.0)/n);
         cout<<res<<endl;
     }
