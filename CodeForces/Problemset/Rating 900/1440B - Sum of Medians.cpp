@@ -43,7 +43,6 @@ void kush_gupta_solves(){
         }
         ll sum=0;
         for (ll i=0;i<k;i++,j-=minus){
-            // cout<<endl<<"j="<<j<<endl;
             sum+=v[j];
         }
         cout<<sum<<endl;
