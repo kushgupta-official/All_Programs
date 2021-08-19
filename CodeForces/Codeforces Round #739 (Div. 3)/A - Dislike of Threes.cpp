@@ -25,13 +25,15 @@ template<class T> using oset =tree<T, null_type, less<T>, rb_tree_tag,tree_order
 
 void kush_gupta_solves(){
     vll v;
-    for (ll i=0;pow(2,i)<=1e9;i++){
-        v.push_back(pow(2,i));
+    for (ll i=1;i<=2000;i++){
+        if (i%3!=0 and i%10!=3){
+            v.push_back(i);
+        }
     }
     w(t){
-        ll n;
-        cin>>n;
-        cout<<*(--lower_bound(v.begin(), v.end(),n))<<endl;
+        ll k;
+        cin>>k;
+        cout<<v[k-1]<<endl;
     }
 }
 
