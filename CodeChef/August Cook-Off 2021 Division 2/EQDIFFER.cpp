@@ -25,33 +25,22 @@ template<class T> using oset =tree<T, null_type, less<T>, rb_tree_tag,tree_order
 
 void kush_gupta_solves(){
     w(t){
-        ll n,k,x;
-        cin>>n>>k>>x;
-        vll v(n);
-        priority_queue <ll> pq;
+        ll n=0;
+        cin>>n;
+        unordered_map <ll,ll> mp;
+        ll x=0;
+        ll mx=0;
         loop(i,0,n){
-            cin>>v[i];
-            pq.push(v[i]);
+            cin>>x;
+            mp[x]++;
+            mx=max(mx,mp[x]);
         }
-        ll res=0;
-        while(pq.size()>1 and k>0){
-            ll a=pq.top();
-            pq.pop();
-            ll b=pq.top();
-            pq.pop();
-            if (a+b<x){
-                pq.push(a);
-                pq.push(b);
-                break;
-            }
-            res+=x;
-            k--;
+        if (n<=2){
+            cout<<0<<endl;
         }
-        while(!pq.empty()){
-            res+=pq.top();
-            pq.pop();
+        else{
+            cout<<min(n-mx,(ll)n-2)<<endl;
         }
-        cout<<res<<endl;
     }
 }
 
