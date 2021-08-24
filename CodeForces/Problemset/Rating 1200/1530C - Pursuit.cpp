@@ -38,12 +38,8 @@ void kush_gupta_solves(){
             cin>>b[i];
             pqB.push(b[i]);
         }
-        // sort(a.begin(), a.end(), greater <ll> ());
-        // sort(b.begin(), b.end(), greater <ll> ());
         ll f=0,s=0;
         for (ll i=0;i<n-(n/4);i++){
-            // f+=a[i];
-            // s+=b[i];
             f+=pqA.top();
             s+=pqB.top();
             mnPqA.push(pqA.top());
@@ -51,7 +47,6 @@ void kush_gupta_solves(){
             pqA.pop();
             pqB.pop();
         }
-        // cout<<f<<" "<<s<<endl;
         ll res=0;
         while(s>f){
             pqA.push(100);
@@ -81,7 +76,6 @@ void kush_gupta_solves(){
             }
             res++;
         }
-        // cout<<f<<" "<<s<<endl;
         cout<<res<<endl;
     }
 }
