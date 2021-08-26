@@ -24,56 +24,13 @@ using namespace __gnu_pbds;
 template<class T> using oset =tree<T, null_type, less<T>, rb_tree_tag,tree_order_statistics_node_update> ;
 
 void kush_gupta_solves(){
-    w(t){
-        ll n;
-        cin>>n;
-        vll a(n);
-        set <ll> sn;//,sp;
-        ll countZero=0;
-        ll countNegative=0;
-        ll mnPos=INT_MAX;
-        loop(i,0,n){
-            cin>>a[i];
-            if (a[i]>0){
-                // sp.insert(a[i]);
-                mnPos=min(mnPos,a[i]);
-            }
-            else if (a[i]<0){
-                sn.insert(abs(a[i]));
-                countNegative++;
-            }
-            else{
-                countZero++;
-            }
+    std::vector<ll> v={1,2,3,4,5};
+    do{
+        for(ll i=0;i<v.size();i++){
+            cout<<v[i]<<" ";
         }
-        ll res=countNegative+countZero;
-        ll mnAbsDiff=INT_MAX;
-        
-        if (mnPos!=INT_MAX and countZero<=1 and 
-            countZero+countNegative>=2 and 
-            countNegative==sn.size())
-        {
-            if (countZero)
-                sn.insert(0);
-            ll pre=*sn.begin();
-            for (auto ite=++sn.begin();ite!=sn.end();ite++){
-                mnAbsDiff=min(mnAbsDiff,abs(*ite-pre));
-                pre=*ite;
-            }
-            // cout<<mnAbsDiff<<endl;
-            if (mnPos<=mnAbsDiff){
-                // cout<<abs(*sn.begin()-*(++sn.begin()))<<endl;
-                res++;
-            }
-        }
-        if (countZero==0 and countNegative==1 and mnPos!=INT_MAX){
-            res=countNegative+1;
-        }
-        else if (countNegative==0 and countZero==1 and mnPos!=INT_MAX){
-            res=2;
-        }
-        cout<<max(res,(ll)1)<<endl;
-    }
+        cout<<endl;
+    }while(next_permutation(v.begin(), v.end()));
 }
 
 int main()
