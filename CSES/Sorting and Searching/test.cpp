@@ -24,13 +24,77 @@ using namespace __gnu_pbds;
 template<class T> using oset =tree<T, null_type, less<T>, rb_tree_tag,tree_order_statistics_node_update> ;
 
 void kush_gupta_solves(){
-    std::vector<ll> v={1,2,3,4,5};
-    do{
-        for(ll i=0;i<v.size();i++){
-            cout<<v[i]<<" ";
+    w(t){
+        ll n;
+        cin>>n;
+        vll front(n),back(n);
+        loop(i,0,n){
+            cin>>front[i];
         }
-        cout<<endl;
-    }while(next_permutation(v.begin(), v.end()));
+        loop(i,0,n){
+            cin>>back[i];
+        }
+        map <ll,ll> mp1,mp2;
+        ll mx1=INT_MIN,mx2=INT_MIN;
+        ll e=INT_MIN;
+        loop(i,0,n){
+            if (front[i]==back[i]){
+                mp1[front[i]]++;
+            }
+            else{
+                mp1[front[i]]++;
+                mp1[back[i]]++;
+            }
+            // mp1[front[i]]++;
+            // if (mp1[front[i]]>mx1){
+            //     mx1=mp1[front[i]];
+            //     e1=front[i];
+            // }
+            // // mp2[back[i]]++;
+            // if (mp2[back[i]]>mx2){
+            //     mx1=mp2[back[i]];
+            //     e1=back[i];
+            // }
+        }
+        mx1=INT_MIN;
+        for (auto i:mp1){
+            if (mx1<i.second){
+                mx1=i.second;
+                e=i.first;
+            }
+            else if (mx1==i.second){
+                e=max(e,i.first);
+            }
+        }
+        // cout<<"e="<<e<<endl;
+        ll flips=0;
+        vll res(n);
+        loop(i,0,n){
+            if (front[i]==e){
+                res[i]=front[i];
+            }
+            else if (back[i]==e){
+                res[i]=back[i];
+                flips++;
+            }
+            else{
+                if (front[i]<back[i]){
+                    res[i]=back[i];
+                    flips++;
+                }
+                else{
+                    res[i]=front[i];
+                }
+            }
+        }
+        ll sol=res[0];
+        for (ll i=1;i<n;i++){
+            sol=sol & res[i];
+        }
+        if (sol==0)
+            flips=0;
+        cout<<sol<<" "<<flips<<endl;
+    }
 }
 
 int main()
