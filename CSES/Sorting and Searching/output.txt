@@ -1,5 +1,3 @@
-2 2
-0 0
-2 2
+nhcet
 
-Time Taken : 0.001238 sec
+Time Taken : 0.004001 sec
