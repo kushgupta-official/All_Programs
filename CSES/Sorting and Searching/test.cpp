@@ -23,22 +23,21 @@ using namespace __gnu_pbds;
 
 template<class T> using oset =tree<T, null_type, less<T>, rb_tree_tag,tree_order_statistics_node_update> ;
 
-string res;
-
-char recur(string s,int i){
-    if (i==s.size()){
-        return s[i-1];
+int fibo(int n){
+    if (n==1 or n==0){
+        return n;
     }
-    res+=recur(s,i+1); 
-    // cout<<res<<endl;
-    return s[i-1];
+    return fibo(n-1)+fibo(n-2);
 }
 
 void kush_gupta_solves(){
-    string s="techn";
-    recur(s,0);
-    cout<<res<<endl;
+    int n=0;
+    cin>>n;
+    for (int i=0;i<=n;i++)
+        cout<<fibo(i)<<" ";
 }
+
+
 
 int main()
 {
