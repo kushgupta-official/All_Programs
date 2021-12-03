@@ -23,26 +23,75 @@ using namespace __gnu_pbds;
 
 template<class T> using oset =tree<T, null_type, less<T>, rb_tree_tag,tree_order_statistics_node_update> ;
 
-void kush_gupta_solves(){
-    w(t){
-        ll a;
-        ll c0=0,c1=0,c2=0;
-        loop(i,0,5){
-            cin>>a;
-            if (a==0)
-                c0++;
-            else if (a==1)
-                c1++;
-            else
-                c2++;
-        }
-        if (c1>c2)
-            cout<<"INDIA\n";
-        else if (c2>c1)
-            cout<<"ENGLAND\n";
-        else
-            cout<<"DRAW\n";
+    int checkBits(vector <int> &arr, int n, int pattern) {
+       int cnt = 0;
+       for (int i = 0; i < n; ++i) {
+          if ((pattern & arr[i]) == pattern) {
+             ++cnt;
+          }
+       }
+       return cnt;
     }
+    bool isKthBitSet(int n, int k){
+        if ((n >> (k - 1)) & 1)
+            return true;
+        return false;
+    }
+    int maxAnd(int n, vector<int> v){
+        // code here
+        // int t=INT_MAX;
+        // cout<<t<<endl;
+        int cnt;
+        int x=-1;
+        int result=0;
+        int sol=-1;
+        for (int i = 31; i >= 0; --i) {
+          cnt = checkBits(v, n, result | (1 << i));
+          // if (cnt){
+          //   cout<<i<<" "<<cnt<<endl;
+          // }
+          if (cnt==n-1){
+            for (int j=0;j<n;j++){
+                if (!isKthBitSet(v[j],i+1)){
+                    // x=i;
+                    // cout<<v[j]<<endl;
+                    if (sol!=-1){
+                        sol&=2147483647;
+                    }
+                    else{
+                        sol=2147483647;
+                    }
+                }
+                else{
+                    if (sol!=-1){
+                        sol&=v[j];
+                    }
+                    else{
+                        sol=v[j];
+                    }
+                }
+                // cout<<sol<<endl;
+            }
+            return sol;
+          }
+       }
+       for (int j=0;j<n;j++){
+            if (sol!=-1){
+                sol&=v[j];
+            }
+            else{
+                sol=v[j];
+            }
+        }
+        // cout<<sol<<endl;
+       return sol;
+    }
+
+void kush_gupta_solves(){
+    int n=3;
+    vector <int> v={3,5,11};
+    int res=maxAnd(3,v);
+    cout<<res<<endl;
 }
 
 int main()
@@ -68,4 +117,4 @@ int main()
     #endif
 
     return 0;
-}
+}   
